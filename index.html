@@ -61,13 +61,14 @@
         display: flex; justify-content: center; align-items: center;
         z-index: 9; background: rgba(0,0,0,0.6); 
     }
+    
     .content {
         display: flex; flex-direction: column; align-items: center;
         border-radius: 12px; background-color: white; max-width: 28rem; width: 86%;
         overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.5);
     }
     
-    /* ФИКС CLS: Фиксированная минимальная высота и центрирование */
+    /* ФИКС CLS от Гугла: Фиксируем высоту блока, чтобы он не прыгал */
     .modal-content { 
         padding: 2.5rem 1.5rem; 
         text-align: center; 
@@ -78,7 +79,7 @@
         justify-content: center;
     }
     
-    /* ФИКС ПЕРЕНОСА: Адаптивный размер и запрет переноса строк */
+    /* ФИКС ПЕРЕНОСА: Заголовок сам сужается и не перепрыгивает на 2 строки */
     .modal-title { 
         margin: 0; 
         font-weight: 800; 
@@ -88,11 +89,12 @@
         text-transform: uppercase; 
         letter-spacing: 0; 
     }
+    
     .modal-text { margin-top: 1rem; font-size: 1.05rem; font-weight: 600; color: #333; line-height: 1.4; }
 
     .button-container { width: 100%; margin: 0; padding: 0; }
     
-    /* ФИКС ПЕРЕНОСА НА КНОПКЕ */
+    /* ФИКС ШРИФТА КНОПКИ: Тоже адаптивный */
     .continue-btn { 
         display: block; width: 100%; color: white; background-color: #d32f2f; 
         font-weight: 800; padding: 22px; border: none; 
@@ -110,7 +112,7 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    // --- ЛОКАЛИЗАЦИЯ (17 ЯЗЫКОВ) с {C} макросом для города ---
+    // --- ЛОКАЛИЗАЦИЯ (17 ЯЗЫКОВ) ---
     const locales = {
         en: { t: "🔞 WARNING: 18+", d: "Uncensored live streams inside.<br>8 models from {C} are online.", b: "ENTER NOW", f: "your area" },
         es: { t: "🔞 ADVERTENCIA: 18+", d: "Transmisiones sin censura.<br>8 modelos de {C} en línea.", b: "ENTRAR AHORA", f: "tu zona" },
@@ -138,33 +140,30 @@ document.addEventListener("DOMContentLoaded", function() {
     const currentLang = locales[langParam] ? langParam : (locales[browserLang] ? browserLang : 'en');
     const content = locales[currentLang];
 
-    // --- CITY helper (Защита от мусора из трекера) ---
+    // --- CITY helper (ЖЕСТКАЯ ЗАЩИТА ОТ МАКРОСОВ) ---
     function sanitizeCity(s) {
         if (!s) return "";
         s = String(s).trim();
         if (s.length < 2 || s.length > 40) return "";
-        if (/[<>]/.test(s)) return "";
+        // ФИКС: Если в строке есть скобки (например {city} или [city]), считаем её битой
+        if (/[<>{}\[\]]/.test(s)) return ""; 
+        if (s.toLowerCase().includes("city")) return "";
         return s.replace(/\s+/g, " ");
     }
     
     const city = sanitizeCity(urlParams.get('city'));
     
-    // Если город есть - ставим его, если нет - ставим языковую заглушку
     let displayCity = content.f; 
     if (city !== "") {
-        // Для русского добавляем "г. ", чтобы нормально читалось
         displayCity = (currentLang === 'ru') ? ("г. " + city) : city;
     }
 
-    // Подставляем город вместо маркера {C}
     const finalDescription = content.d.replace("{C}", displayCity);
 
-    // Применяем финальные тексты
     document.querySelector('.modal-title').innerText = content.t;
     document.querySelector('.modal-text').innerHTML = finalDescription;
     document.querySelector('.continue-btn').innerText = content.b;
 
-    // Поддержка RTL (для арабов)
     if (content.rtl) document.documentElement.dir = "rtl";
 
     // --- ЛОГИКА ПАПОК (?v=) ---
@@ -182,7 +181,6 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log("Folder: " + folder);
     }
 
-    // Показ сетки
     setTimeout(() => { if (grid) grid.style.opacity = '1'; }, 30);
 });
 </script>

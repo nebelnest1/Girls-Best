@@ -116,33 +116,57 @@
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
             width: clamp(40px, 6vw, 55px); height: clamp(40px, 6vw, 55px);
         }
+        
+        /* Badges for Fake Video Duration / LIVE */
+        .badge {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background: rgba(0, 0, 0, 0.75);
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 4px;
+            z-index: 2;
+            pointer-events: none;
+            letter-spacing: 0.5px;
+        }
+        .badge.live {
+            background: #e53935;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+
+        /* Modal Styles */
         .modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             display: flex; justify-content: center; align-items: center;
-            z-index: 9; flex-direction: column; background: rgba(0,0,0,0.5); 
+            z-index: 9; flex-direction: column; background: rgba(0,0,0,0.6); 
         }
         .content {
             display: flex; flex-direction: column; align-items: center;
             border-radius: 8px; background-color: white; max-width: 28rem; width: 86%;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
-        .modal-content { padding: 20px 30px; text-align: center; max-width: 400px; padding: 1.25rem 1.5rem 1.5rem; }
-        .modal-title { margin-top: 0; font-weight: 700; font-size: 1.125rem; line-height: 1.75rem; }
-        .modal-text { margin-top: 0.5rem; font-size: 0.875rem; line-height: 1.25rem; }
-        .modal-content button {
-            background-color: #4caf50; color: white; border: none;
-            padding: 10px 20px; margin-top: 15px; border-radius: 5px;
-            cursor: pointer; font-size: 16px;
+        .modal-content { padding: 20px 30px; text-align: center; max-width: 400px; padding: 1.5rem 1.5rem 1.5rem; }
+        .modal-title { margin-top: 0; font-weight: 800; font-size: 1.25rem; line-height: 1.75rem; color: #d32f2f; }
+        .modal-text { margin-top: 0.75rem; font-size: 1rem; line-height: 1.4rem; font-weight: 600; color: #333; }
+        
+        .button-container { border-top: 1px solid rgb(220, 220, 220); width: 100%; }
+        .continue-btn { 
+            color: white; background-color: #d32f2f; font-weight: 800; 
+            padding: 16px; border-radius: 0 0 8px 8px; width: 100%; border: none; font-size: 18px; text-transform: uppercase;
         }
-        .modal-content button:hover { background-color: #45a049; }
-        .button-container { border-top: 1px solid rgb(163, 163, 163); width: 100%; }
-        .continue-btn { color: rgb(56, 129, 246); font-weight: 700; padding: 12px; border-radius: 0.25rem; width: 100%; }
+        .continue-btn:hover { background-color: #b71c1c; }
         
         @media (min-width: 480px) {
-            .modal-title { font-size: 24px; line-height: 32px; }
-            .modal-text { font-size: 14px; line-height: 20px; }
-        }
-        @media (min-width: 768px) {
-            .continue-btn { font-size: 20px; line-height: 28px; }
+            .modal-title { font-size: 26px; line-height: 32px; }
+            .modal-text { font-size: 18px; line-height: 24px; }
         }
     </style>
 
@@ -153,19 +177,16 @@
     <div id="xh_exit_modal" class="modal" data-target="modal_bg">
         <div class="content" data-target="modal_content">
             <div class="modal-content">
-                <h2 class="modal-title" data-translate="keep_in_mind">
-                    KEEP IN MIND!
+                <h2 class="modal-title" data-translate="warning_18">
+                    🔞 WARNING: 18+
                 </h2>
-                <p class="modal-text" data-translate="now_you_might_see_nude_videos_of_women">
-                    Now you might see nude videos of women.
-                </p>
-                <p class="modal-text" data-translate="click_the_continue_button_and_be_discreet">
-                    Click the Continue button and be discreet!
+                <p class="modal-text" data-translate="uncensored_live_streams_inside">
+                    Uncensored live streams inside.
                 </p>
             </div>
             <div class="button-container">
-                <button class="continue-btn" data-translate="continue" data-target="modal_content">
-                    Continue
+                <button class="continue-btn" data-translate="enter_now" data-target="modal_content">
+                    ENTER NOW
                 </button>
             </div>
         </div>
@@ -174,37 +195,43 @@
     <div class="background-grid">
         <div class="image-container" data-target="play_pause">
             <img src="./assets/images/photo_1.webp" alt="girl1" class="image" />
-            <div class="play-icon">
-                <img src="./assets/images/play.webp" alt="play" />
-            </div>
+            <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
+            <div class="badge live">🔴 LIVE</div>
         </div>
         <div class="image-container" data-target="play_pause">
             <img src="./assets/images/photo_2.webp" alt="girl2" class="image" />
             <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
+            <div class="badge">08:15</div>
         </div>
         <div class="image-container" data-target="play_pause">
             <img src="./assets/images/photo_3.webp" alt="girl3" class="image" />
             <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
+            <div class="badge live">🔴 LIVE</div>
         </div>
         <div class="image-container" data-target="play_pause">
             <img src="./assets/images/photo_8.webp" alt="girl8" class="image" />
             <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
+            <div class="badge">12:40</div>
         </div>
         <div class="image-container" data-target="play_pause">
             <img src="./assets/images/photo_4.webp" alt="girl4" class="image" />
             <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
+            <div class="badge">04:20</div>
         </div>
         <div class="image-container" data-target="play_pause">
             <img src="./assets/images/photo_5.webp" alt="girl5" class="image" />
             <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
+            <div class="badge live">🔴 LIVE</div>
         </div>
         <div class="image-container" data-target="play_pause">
             <img src="./assets/images/photo_7.webp" alt="girl7" class="image" />
             <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
+            <div class="badge">16:55</div>
         </div>
         <div class="image-container" data-target="play_pause">
             <img src="./assets/images/photo_6.webp" alt="girl6" class="image" />
             <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
+            <div class="badge live">🔴 LIVE</div>
         </div>
     </div>
 

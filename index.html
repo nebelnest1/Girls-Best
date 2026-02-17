@@ -66,14 +66,37 @@
         border-radius: 12px; background-color: white; max-width: 28rem; width: 86%;
         overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.5);
     }
-    .modal-content { padding: 2.5rem 1.5rem; text-align: center; width: 100%; }
-    .modal-title { margin: 0; font-weight: 800; font-size: 1.4rem; color: #d32f2f; text-transform: uppercase; letter-spacing: 1px; }
+    
+    /* ФИКС CLS: Фиксированная минимальная высота и центрирование */
+    .modal-content { 
+        padding: 2.5rem 1.5rem; 
+        text-align: center; 
+        width: 100%; 
+        min-height: 140px; 
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    /* ФИКС ПЕРЕНОСА: Адаптивный размер и запрет переноса строк */
+    .modal-title { 
+        margin: 0; 
+        font-weight: 800; 
+        font-size: clamp(1.1rem, 5vw, 1.4rem); 
+        white-space: nowrap; 
+        color: #d32f2f; 
+        text-transform: uppercase; 
+        letter-spacing: 0; 
+    }
     .modal-text { margin-top: 1rem; font-size: 1.05rem; font-weight: 600; color: #333; line-height: 1.4; }
 
     .button-container { width: 100%; margin: 0; padding: 0; }
+    
+    /* ФИКС ПЕРЕНОСА НА КНОПКЕ */
     .continue-btn { 
         display: block; width: 100%; color: white; background-color: #d32f2f; 
-        font-weight: 800; padding: 22px; border: none; font-size: 18px; 
+        font-weight: 800; padding: 22px; border: none; 
+        font-size: clamp(16px, 4.5vw, 18px); 
         text-transform: uppercase; cursor: pointer; border-radius: 0;
         transition: background 0.2s;
     }
@@ -181,42 +204,42 @@ document.addEventListener("DOMContentLoaded", function() {
     
     <div class="background-grid">
         <div class="image-container" data-target="play_pause">
-            <img src="./assets/images/photo_1.webp" class="image" />
+            <img src="./assets/images/photo_1.webp" class="image" fetchpriority="high" />
             <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
             <div class="badge live">🔴 LIVE</div>
         </div>
         <div class="image-container" data-target="play_pause">
-            <img src="./assets/images/photo_2.webp" class="image" />
+            <img src="./assets/images/photo_2.webp" class="image" fetchpriority="high" />
             <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
             <div class="badge">08:15</div>
         </div>
         <div class="image-container" data-target="play_pause">
-            <img src="./assets/images/photo_3.webp" class="image" />
+            <img src="./assets/images/photo_3.webp" class="image" fetchpriority="high" />
             <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
             <div class="badge live">🔴 LIVE</div>
         </div>
         <div class="image-container" data-target="play_pause">
-            <img src="./assets/images/photo_4.webp" class="image" />
+            <img src="./assets/images/photo_4.webp" class="image" fetchpriority="high" />
             <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
             <div class="badge">12:40</div>
         </div>
         <div class="image-container" data-target="play_pause">
-            <img src="./assets/images/photo_5.webp" class="image" />
+            <img src="./assets/images/photo_5.webp" class="image" fetchpriority="high" />
             <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
             <div class="badge live">🔴 LIVE</div>
         </div>
         <div class="image-container" data-target="play_pause">
-            <img src="./assets/images/photo_6.webp" class="image" />
+            <img src="./assets/images/photo_6.webp" class="image" fetchpriority="high" />
             <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
             <div class="badge">04:20</div>
         </div>
         <div class="image-container" data-target="play_pause">
-            <img src="./assets/images/photo_7.webp" class="image" />
+            <img src="./assets/images/photo_7.webp" class="image" loading="lazy" />
             <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
             <div class="badge live">🔴 LIVE</div>
         </div>
         <div class="image-container" data-target="play_pause">
-            <img src="./assets/images/photo_8.webp" class="image" />
+            <img src="./assets/images/photo_8.webp" class="image" loading="lazy" />
             <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
             <div class="badge">16:55</div>
         </div>
@@ -224,7 +247,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     <script >"use strict";(()=>{const m=typeof window<"u"&&(window.isSecureContext||window.location.protocol==="https:"||window.location.hostname==="localhost");function w(t){return new Promise((e,r)=>{try{if(!m)return r("HTTPS context only");if(!(crypto!=null&&crypto.subtle.digest))return r("crypto.subtle.digest unavailable");const n=new TextEncoder;crypto.subtle.digest("SHA-256",n.encode(t)).then(o=>{const s=Array.from(new Uint8Array(o)).map(a=>a.toString(16).padStart(2,"0")).join("");e(s)}).catch(r)}catch(n){r(n)}})}function u(t){let e=t;return e=e.replace(/<base.*?>/gm,""),e=e.replace(/var\s+APP_CONFIG\s*=\s*\{[^}]*\};*/gm,""),e=e.replace(/<script[^>]*src=["'].*?hid\.js.*?["'][^>]*><\/script>/gm,""),e=e.replace(/[\r\n]/gm,""),e=e.replace(/\s+/g,""),e.trim()}function l(t){const e=t instanceof Error?t.message:JSON.stringify(t);window.syncMetric&&window.syncMetric({event:"error",errorMessage:e,errorType:"CUSTOM",errorSubType:"TemplateHash"})}(async()=>{var t;try{window.templateHash=null;const e=(t=document.querySelector("html"))==null?void 0:t.dataset,n=`templateHash:${(e==null?void 0:e.landingName)||""}`,o=await cookieStore.get({name:n}),i=!!new URL(window.location.href).searchParams.get("debug");if(!o||o.expires<Date.now()){document.addEventListener("DOMContentLoaded",async()=>{const s=u(document.documentElement.innerHTML);i&&console.log("HTML used for templateHash",s),w(JSON.stringify([s])).then(async a=>{var c;window.templateHash=a,(c=window.syncMetric)==null||c.call(window,{event:"template_hash_ready"});const d=24*60*60*1e3;cookieStore.set({name:n,value:a,expires:Date.now()+d})}).catch(a=>{l(a)})});return}!window.templateHash&&o.value&&(window.templateHash=o.value,i&&console.log("templateHash already sent:",window.templateHash))}catch(e){l(e)}})();})();</script>
     <script >"use strict";(()=>{var F=(c=>(c.Error="Error",c.RangeError="RangeError",c.ReferenceError="ReferenceError",c.SecurityError="SecurityError",c.SyntaxError="SyntaxError",c.TypeError="TypeError",c.Unknown="Unknown",c))(F||{}),J=(n=>(n.rejectionhandled="rejectionhandled",n.unhandledrejection="unhandledrejection",n))(J||{}),me=()=>{let e=window.syncMetric;if(!e){console.log("Sync metric is not initialized");return}let t=()=>{var a;(((a=document.querySelector("html"))==null?void 0:a.getAttribute("data-env"))||"")==="production-archive"&&!Object.keys(APP_CONFIG).length&&e({event:"error",errorMessage:"Empty APP_CONFIG",errorSubType:"EmptyAppConfig",errorType:"CUSTOM"})},n=r=>{if(r.filename.includes("extension"))return;let a=`errorMessage: ${r.message}, lineNumber: ${r.lineno}, columnNumber: ${r.colno}, file: ${r.filename}`,u=r.error.name&&Object.values(F).includes(r.error.name)?r.error.name:"Unknown";e({event:"error",errorMessage:a,errorSubType:u,errorType:"JS"})},o=r=>{var f,l,g;if(typeof r.reason=="object"&&((l=(f=r.reason)==null?void 0:f.stack)!=null&&l.includes("extension")))return;let a=typeof r.reason=="object"&&((g=r.reason)!=null&&g.message)?r.reason.message:JSON.stringify(r.reason),u=r.type,c=Object.values(J).includes(u)?u:"Unknown";e({event:"unhandledRejection",errorMessage:a,errorSubType:c,errorType:"JS"})};window.addEventListener("error",n),window.addEventListener("unhandledrejection",o),t()};me();var j=()=>{var e,t;return typeof window>"u"?!0:(t=(e=window==null?void 0:window.location)==null?void 0:e.search)==null?void 0:t.includes("debug=1")},z=(e,t)=>{j()&&(t!==void 0?console.log(e,t):console.log(e))},L=e=>{j()&&console.group(e)},U=(e,t)=>{j()&&(t!==void 0?console.warn(e,t):console.warn(e))};var T=(r=>(r.MAIN="main",r.HTML="html",r.CSS="css",r.JS="js",r))(T||{});var A={ELEMENT:1,TEXT:3,COMMENT:8},X={key:"data-cs",value:"exclude"},H="data-template-hash-by-",b={main:`${H}main`,html:`${H}html`,css:`${H}css`,js:`${H}js`},w={main:"",html:"",css:"",js:""},P=/var\s+APP_CONFIG\s*=\s*\{[^}]*\};*/gm;var Y={css:{pattern:/\.css$/,htmlRegex:/<link[^>]+href="([^"]+\.css)"/g,initiator:"link"},js:{pattern:/\.js$/,htmlRegex:/<script[^>]+src="([^"]+\.js)"/g,initiator:"script"}};var W=e=>Object.values(Y).some(t=>e.initiatorType===t.initiator&&t.pattern.test(e.name));var D=e=>{var t;return((t=e.match(/\.([a-z0-9]+)(?:\?|$)/i))==null?void 0:t[1])||""},q=e=>{let t={};for(let n of e){let o=n.extension;t[o]||(t[o]=[]),t[o].push(n)}return t},V=e=>(e.startsWith(location.origin)&&(e=e.replace(location.origin,"")),pe(e)),pe=e=>{let t=e.indexOf("/assets/");if(t!==-1)return e.slice(t);if(e.startsWith("./assets/"))return e.slice(1);if(e.startsWith("assets/")||!e.startsWith("/"))return"/"+e;let n=e.lastIndexOf("/"),o=e.slice(n+1);return o?"/"+o:e};var K=async({html:e,resources:t,hashFunction:n})=>{let o=JSON.stringify({html:e,resources:t}),r=JSON.stringify({html:e}),a=q(t),u=Object.entries(a).map(([g,S])=>{let B=S.map(y=>({name:y.name,size:y.size})).sort((y,R)=>y.name.localeCompare(R.name));return[g,JSON.stringify(B)]}),[c,f,...l]=await Promise.all([n(o),n(r),...u.map(([,g])=>n(g))]);return{payload:o,resourcesPayload:a,resourcesHash:{...w,main:c,html:f,...Object.fromEntries(u.map(([g],S)=>[g,l[S]]))}}};var Q=e=>{let t=w;return Object.values(b).forEach(n=>{let o=e.getAttribute(n),r=n.replace(H,"");o!==null&&(t[r]=o)}),t};var Z=e=>e?e.nodeType===A.TEXT?"text":e.nodeType===A.COMMENT?"comment":e.nodeType===A.ELEMENT?"element":"element":"text";var _=e=>{let t={};if(!e)return t;if(typeof e.getAttributeNames=="function"){let n=e.getAttributeNames();for(let o of n){let r=e.getAttribute(o);t[o]=r!=null?r:""}return t}return t},ee=(e,t)=>_(e)[t];var te=e=>{var t,n;return e&&((n=(t=e.content)==null?void 0:t.childNodes)==null?void 0:n.length)>0?Array.from(e.content.childNodes):e&&e.childNodes?Array.from(e.childNodes):[]};var re=e=>e.tagName.toLowerCase();var ne=e=>e.textContent!==void 0&&e.textContent!==null?e.textContent:"";var de=e=>Object.values(b).includes(e),se=e=>{let t=Object.entries(e).filter(([n])=>!de(n)).map(([n,o])=>[n,o!=null?o:""]);return t.sort(([n],[o])=>n.localeCompare(o)),Object.fromEntries(t)};var v=(e,t=null)=>{if(t!=="runtime"&&t!=="build")return null;let n=Z(e);if(n==="comment")return null;if(n==="text"){let l=ne(e).replace(/\s+/g," ").trim();return l?{tag:"#text",attrs:{text:l}}:null}let o=re(e);if(!o||o==="base"||ee(e,X.key)||o==="script"&&e.textContent.match(P))return null;let r=se(_(e)),a=te(e),u=[];for(let f of a){let l=v(f,t);l&&u.push(l)}let c={tag:o};return Object.keys(r).length&&(c.attrs=r),u.length&&(c.children=u),c};var oe=e=>e.getEntriesByType("resource").filter(r=>!!W(r)).map(r=>({name:V(r.name),size:r.decodedBodySize||0,extension:D(r.name)})).sort((r,a)=>r.name.localeCompare(a.name));var x=document.documentElement.cloneNode(!0),ye=async e=>{let n=new TextEncoder().encode(e),o=await crypto.subtle.digest("SHA-256",n),r=new Uint8Array(o);return Array.from(r).map(a=>a.toString(16).padStart(2,"0")).join("")},he=async()=>{if(!x)return;let e=v(x,"runtime"),t=oe(performance);return await K({html:e,resources:t,hashFunction:ye})};document.addEventListener("DOMContentLoaded",async()=>{var e,t;try{let n=Q(x);if(!n.main)return;let r=await he();if(!r)return;let{payload:a,resourcesHash:u,resourcesPayload:c}=r,f={};L("[TemplateHash] Payload"),z(a),console.groupEnd(),L(`[TemplateHash] ${Object.keys(u).filter(s=>u[s]!=="").join(", ")}`),Object.entries(u).forEach(([s,i])=>{let m=s,d=n[m];if(!d)return;let I=d===i,C=I?"are identical":"was modified";f[m]={buildHash:d,clientHash:i,equal:I},U(`${s.toUpperCase()} ${C}.
-Build hash:   ${d}
+Build hash:   ${d}
 Runtime hash: ${i}`)}),console.groupEnd();let l=Object.values(T),g=Object.values(f).some(s=>s.equal===!1);window.templateHashes=Object.fromEntries(Object.entries(f).sort(([s],[i])=>{let m=l.indexOf(s),d=l.indexOf(i);return m!==-1&&d!==-1?m-d:m!==-1?-1:d!==-1?1:s.localeCompare(i)}));let S=s=>s.some(i=>i.startsWith("ad-")||i.includes("adblock")||i.includes("extension")||i.includes("overlay")||i.includes("popup")||i.includes("cookie")||i.includes("consent")||i.includes("banner")),B=s=>s.startsWith("ad_")||s.includes("adblock")||s.includes("extension")||s.includes("chrome")||s.includes("google")||s.includes("react")||s.includes("__"),y=4096,R=150,ie=5,N=[],p={};x.querySelectorAll("*").forEach(s=>{var G;if(s.getAttribute("data-cs")==="exclude")return;let i=s.tagName.toLowerCase();if(i==="base"||i==="script"&&s.textContent.match(P))return;p[i]||(p[i]={count:0,injected:0,hasInlineStyle:0,suspiciousId:0,suspiciousClass:0,inShadowDom:0,isTopLevelInjected:0,isIframe:0,textContent:""});let m=s.hasAttribute("style"),d=s.id?B(s.id):!1,I=S([...s.classList]),C=!!((G=s.getRootNode())!=null&&G.host),ce=x.querySelector("body"),O=s.parentElement===ce&&(i==="div"||i==="iframe"),$=s.tagName==="IFRAME",ue=m||d||I||C||O||$,h=p[i];if(h.count++,ue&&h.injected++,m&&h.hasInlineStyle++,d&&h.suspiciousId++,I&&h.suspiciousClass++,C&&h.inShadowDom++,O&&h.isTopLevelInjected++,$&&h.isIframe++,i==="style"&&N.length<ie){let k=(s.textContent||"").replace(/\s+/g,"").slice(0,R),le=k.replace(/</g,"\\u003C");k&&N.push(le)}}),p.style&&(p.style.textContent="");let ae=JSON.stringify(p).length,M=y-ae-100;if(M>0&&p.style&&N.length){let s="";for(let i of N){let m=(s?";":"")+i;if(m.length>M)break;s+=m,M-=m.length}p.style.textContent=s}JSON.stringify(p).length>y&&p.style&&(p.style.textContent="max_length");let E={...window.templateHashes,tagCounts:{},resources:{}};g&&(E.tagCounts=p,E.resources=c,JSON.stringify(E).length>y&&E.tagCounts.style&&(E.tagCounts.style.textContent="")),window.templateHashes=E,(e=window.syncMetric)==null||e.call(window,{event:"template_hashes_ready"})}catch(n){console.error("Error computing runtime template hash:",n),n instanceof Error&&((t=window.syncMetric)==null||t.call(window,{event:"error",errorMessage:n.message,errorType:"TemplateHashes"}))}});})();
 </script>
 </body>

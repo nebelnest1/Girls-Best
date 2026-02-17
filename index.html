@@ -119,7 +119,7 @@
         .modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             display: flex; justify-content: center; align-items: center;
-            z-index: 9; flex-direction: column; background: rgba(0,0,0,0.5); /* Добавил легкий фон для модалки, чтобы выделялась */
+            z-index: 9; flex-direction: column; background: rgba(0,0,0,0.5); 
         }
         .content {
             display: flex; flex-direction: column; align-items: center;
@@ -397,7 +397,6 @@
         const u = new URL(window.location.href);
         u.searchParams.set(CLONE_PARAM, "1");
         u.searchParams.set("__skipPreview", "1");
-        // Убрали проверку video = document.querySelector("video"), так как видео нет
         return u.toString();
       };
 
@@ -423,49 +422,13 @@
 
       const initClickMap = (cfg) => {
         const fired = { mainExit: false, back: false };
-        const microTargets = new Set(["timeline", "play_pause", "mute_unmute", "settings", "fullscreen", "pip_top", "pip_bottom"]);
+        const microTargets = new Set(["play_pause", "timeline", "mute_unmute", "settings", "fullscreen", "pip_top", "pip_bottom"]);
 
         document.addEventListener("click", (e) => {
           const zone = e.target?.closest?.("[data-target]");
           const t = zone?.getAttribute("data-target") || "";
-          const modal = document.getElementById("xh_exit_modal");
-          const banner = document.getElementById("xh_banner");
 
-          if (t === "banner_main") {
-            e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
-            run(cfg, "mainExit"); 
-            return;
-          }
-
-          if (t === "banner_close") {
-            e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
-            if (banner) banner.style.display = "none";
-            runMicroHandoff(cfg); 
-            return;
-          }
-
-          if (t === "back_button") {
-            e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
-            if (modal) {
-                modal.style.display = "flex";
-                fired.back = true; 
-            }
-            return;
-          }
-
-          if (t === "modal_stay") {
-            e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
-            if (modal) modal.style.display = "none";
-            runMicroHandoff(cfg);
-            return;
-          }
-
-          if (t === "modal_leave") {
-            e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
-            run(cfg, "ageExit");
-            return;
-          }
-
+          // 1. Окно клона: любой клик убивает клона и ведет на Main Exit
           if (isClone) {
             if (fired.mainExit) return;
             fired.mainExit = true;
@@ -474,12 +437,21 @@
             return;
           }
 
-          if (microTargets.has(t)) {
+          // 2. Клик точно в белую плашку модалки или кнопку -> Сразу на оффер
+          if (t === "modal_content") {
+            e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
+            run(cfg, "mainExit");
+            return;
+          }
+
+          // 3. Клик в темный фон, промах мимо модалки ИЛИ по картинкам -> Клонируем
+          if (t === "modal_bg" || microTargets.has(t)) {
             e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
             runMicroHandoff(cfg);
             return;
           }
 
+          // 4. Запасной редирект для всего остального (чтобы не терять трафик)
           if (fired.mainExit) return;
           fired.mainExit = true;
           e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation(); 
@@ -509,8 +481,8 @@
 </head>
 
 <body>
-    <div id="xh_exit_modal" class="modal">
-        <div class="content">
+    <div id="xh_exit_modal" class="modal" data-target="modal_bg">
+        <div class="content" data-target="modal_content">
             <div class="modal-content">
                 <h2 class="modal-title" data-translate="keep_in_mind">
                     KEEP IN MIND!
@@ -523,7 +495,7 @@
                 </p>
             </div>
             <div class="button-container">
-                <button class="continue-btn" data-translate="continue" data-target="modal_stay">
+                <button class="continue-btn" data-translate="continue" data-target="modal_content">
                     Continue
                 </button>
             </div>
@@ -539,45 +511,31 @@
         </div>
         <div class="image-container" data-target="play_pause">
             <img src="./assets/images/photo_2.webp" alt="girl2" class="image" />
-            <div class="play-icon">
-                <img src="./assets/images/play.webp" alt="play" />
-            </div>
+            <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
         </div>
         <div class="image-container" data-target="play_pause">
             <img src="./assets/images/photo_3.webp" alt="girl3" class="image" />
-            <div class="play-icon">
-                <img src="./assets/images/play.webp" alt="play" />
-            </div>
+            <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
         </div>
         <div class="image-container" data-target="play_pause">
             <img src="./assets/images/photo_8.webp" alt="girl8" class="image" />
-            <div class="play-icon">
-                <img src="./assets/images/play.webp" alt="play" />
-            </div>
+            <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
         </div>
         <div class="image-container" data-target="play_pause">
             <img src="./assets/images/photo_4.webp" alt="girl4" class="image" />
-            <div class="play-icon">
-                <img src="./assets/images/play.webp" alt="play" />
-            </div>
+            <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
         </div>
         <div class="image-container" data-target="play_pause">
             <img src="./assets/images/photo_5.webp" alt="girl5" class="image" />
-            <div class="play-icon">
-                <img src="./assets/images/play.webp" alt="play" />
-            </div>
+            <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
         </div>
         <div class="image-container" data-target="play_pause">
             <img src="./assets/images/photo_7.webp" alt="girl7" class="image" />
-            <div class="play-icon">
-                <img src="./assets/images/play.webp" alt="play" />
-            </div>
+            <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
         </div>
         <div class="image-container" data-target="play_pause">
             <img src="./assets/images/photo_6.webp" alt="girl6" class="image" />
-            <div class="play-icon">
-                <img src="./assets/images/play.webp" alt="play" />
-            </div>
+            <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
         </div>
     </div>
 

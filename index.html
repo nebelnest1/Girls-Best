@@ -89,79 +89,77 @@
         const cfCity = "{{CITY}}"; 
     </script>
 
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        
-        // Берем город из трекера (?city=) или из воркера Cloudflare
-        let city = urlParams.get('city') || cfCity;
-        
-        // Проверка: Если воркер не сработал и трекера нет, city останется "{{CITY}}"
-        const isCityValid = (city && city !== "{{CITY}}" && city.trim() !== "");
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // --- ЛОКАЛИЗАЦИЯ (17 ЯЗЫКОВ) ---
+    const locales = {
+        en: { t: "🔞 WARNING: 18+", d: "Uncensored live streams inside.", b: "ENTER NOW" },
+        es: { t: "🔞 ADVERTENCIA: 18+", d: "Transmisiones en vivo sin censura.", b: "ENTRAR AHORA" },
+        pt: { t: "🔞 AVISO: 18+", d: "Transmissões ao vivo sem censura.", b: "ENTRAR AGORA" },
+        id: { t: "🔞 PERINGATAN: 18+", d: "Siaran langsung tanpa sensor.", b: "MASUK SEKARANG" },
+        th: { t: "🔞 คำเตือน: 18+", d: "ไลฟ์สดแบบไม่เซ็นเซอร์ที่นี่", b: "เข้าสู่ระบบตอนนี้" },
+        vi: { t: "🔞 CẢNH BÁO: 18+", d: "Phát trực tiếp không che tại đây.", b: "VÀO NGAY" },
+        hi: { t: "🔞 चेतावनी: 18+", d: "बिना सेंसर वाला लाइव स्ट्रीम यहाँ।", b: "अभी प्रवेश करें" },
+        bn: { t: "🔞 সতর্কতা: 18+", d: "সেন্সরহীন লাইভ স্ট্রিমিং ভেতরে।", b: "এখনই প্রবেশ করুন" },
+        ur: { t: "🔞 انتباہ: +18", d: "بغیر سنسر لائیو سٹریمز یہاں۔", b: "ابھی داخل ہوں", rtl: true },
+        ar: { t: "🔞 تحذير: +18", d: "بث مباشر بدون حذف بالداخل.", b: "دخول الآن", rtl: true },
+        tr: { t: "🔞 UYARI: 18+", d: "Sansürsüz canlı yayınlar içeride.", b: "ŞİMDİ GİR" },
+        fr: { t: "🔞 ATTENTION: 18+", d: "Directs non censurés à l'intérieur.", b: "ENTRER MAINTENANT" },
+        de: { t: "🔞 WARNUNG: 18+", d: "Unzensierte Livestreams verfügbar.", b: "JETZT EINLOGGEN" },
+        it: { t: "🔞 AVVISO: 18+", d: "Streaming dal vivo senza censura.", b: "ENTRA ORA" },
+        ms: { t: "🔞 AMARAN: 18+", d: "Siaran langsung tanpa sensor.", b: "MASUK SEKARANG" },
+        ph: { t: "🔞 BABALA: 18+", d: "Uncensored live streams sa loob.", b: "PASOK NA" },
+        ru: { t: "🔞 ВНИМАНИЕ: 18+", d: "Прямые эфиры без цензуры здесь.", b: "ВОЙТИ СЕЙЧАС" }
+    };
 
-        // --- ЛОКАЛИЗАЦИЯ С ФОЛБЕКАМИ (f = заглушка если города нет) ---
-        const locales = {
-            en: { t: "🔞 WARNING: 18+", d: "Uncensored live streams inside. 8 models from {C} are online.", b: "ENTER NOW", f: "your area" },
-            es: { t: "🔞 ADVERTENCIA: 18+", d: "Vivos sin censura. 8 modelos de {C} en línea.", b: "ENTRAR AHORA", f: "tu zona" },
-            pt: { t: "🔞 AVISO: 18+", d: "Transmissões ao vivo sem censura. 8 modelos de {C} online.", b: "ENTRAR AGORA", f: "sua região" },
-            id: { t: "🔞 PERINGATAN: 18+", d: "Siaran langsung tanpa sensor. 8 model dari {C} sedang online.", b: "MASUK SEKARANG", f: "daerah Anda" },
-            th: { t: "🔞 คำเตือน: 18+", d: "ไลฟ์สดแบบไม่เซ็นเซอร์ที่นี่ นางแบบ 8 คนจาก {C} กำลังออนไลน์", b: "เข้าสู่ระบบตอนนี้", f: "พื้นที่ของคุณ" },
-            vi: { t: "🔞 CẢNH BÁO: 18+", d: "Phát trực tiếp không che. 8 người mẫu từ {C} đang trực tuyến.", b: "VÀO NGAY", f: "khu vực của bạn" },
-            hi: { t: "🔞 चेतावनी: 18+", d: "बिना सेंसर लाइव स्ट्रीम। {C} की 8 मॉडल्स ऑनलाइन हैं।", b: "अभी प्रवेश करें", f: "आपके क्षेत्र" },
-            bn: { t: "🔞 সতর্কতা: 18+", d: "সেন্সরহীন লাইভ স্ট্রিমিং। {C} থেকে ৮ জন মডেল অনলাইনে।", b: "প্রবেশ করুন", f: "আপনার এলাকার" },
-            ur: { t: "🔞 انتباہ: +18", d: "بغیر سنسر لائیو سٹریمز۔ {C} سے 8 ماڈلز آن لائن ہیں۔", b: "ابھی داخل ہوں", rtl: true, f: "آپ کے علاقے" },
-            ar: { t: "🔞 تحذير: +18", d: "بث مباشر بدون حذف بالداخل. 8 عارضات من {C} متصلات الآن.", b: "دخول الآن", rtl: true, f: "منطقتك" },
-            tr: { t: "🔞 UYARI: 18+", d: "Sansürsüz canlı yayınlar içeride. {C} konumundan 8 model çevrimiçi.", b: "ŞİMDİ GİR", f: "bölgenden" },
-            fr: { t: "🔞 ATTENTION: 18+", d: "Directs non censurés à l'intérieur. 8 modèles de {C} sont en ligne.", b: "ENTRER MAINTENANT", f: "ta région" },
-            de: { t: "🔞 WARNUNG: 18+", d: "Unzensierte Livestreams verfügbar. 8 Models aus {C} sind online.", b: "JETZT EINLOGGEN", f: "deiner Umgebung" },
-            it: { t: "🔞 AVVISO: 18+", d: "Streaming dal vivo senza censura. 8 modelle di {C} sono online.", b: "ENTRA ORA", f: "tua zona" },
-            ms: { t: "🔞 AMARAN: 18+", d: "Siaran langsung tanpa sensor. 8 model dari {C} sedang dalam talian.", b: "MASUK SEKARANG", f: "kawasan anda" },
-            ph: { t: "🔞 BABALA: 18+", d: "Uncensored live streams sa loob. 8 na modelo mula sa {C} ay online.", b: "PASOK NA", f: "iyong lugar" },
-            fil:{ t: "🔞 BABALA: 18+", d: "Uncensored live streams sa loob. 8 na modelo mula sa {C} ay online.", b: "PASOK NA", f: "iyong lugar" },
-            ru: { t: "🔞 ВНИМАНИЕ: 18+", d: "Прямые эфиры без цензуры здесь. 8 моделей из {C} уже онлайн", b: "ВОЙТИ СЕЙЧАС", f: "твоего региона" }
-        };
+    const urlParams = new URLSearchParams(window.location.search);
+    const langParam = urlParams.get('lang');
+    const browserLang = navigator.language.split('-')[0];
+    const currentLang = locales[langParam] ? langParam : (locales[browserLang] ? browserLang : 'en');
+    const content = locales[currentLang];
 
-        const langParam = urlParams.get('lang');
-        const browserLang = navigator.language.split('-')[0];
-        const currentLang = locales[langParam] ? langParam : (locales[browserLang] ? browserLang : 'en');
-        const content = locales[currentLang];
+    // --- CITY helper ---
+    function sanitizeCity(s) {
+        if (!s) return "";
+        s = String(s).trim();
+        if (s.length < 2 || s.length > 40) return "";
+        if (/[<>]/.test(s)) return "";
+        return s.replace(/\s+/g, " ");
+    }
+    const city = sanitizeCity(urlParams.get('city'));
+    const line2 = city ? `8 моделей из ${city} онлайн` : `8 моделей онлайн`;
 
-        // ФОРМИРУЕМ ГОРОД ИЛИ ЗАГЛУШКУ
-        let displayCity = content.f; // По умолчанию ставим безопасную заглушку
-        
-        if (isCityValid) {
-            // Для русского добавляем "г. ", для остальных просто город
-            displayCity = (currentLang === 'ru') ? ("г. " + city) : city;
-        }
+    // Применяем тексты
+    document.querySelector('.modal-title').innerText = content.t;
 
-        // Подставляем город вместо маркера {C}
-        const finalDescription = content.d.replace("{C}", displayCity);
+    // ВАЖНО: innerHTML нужен для <br>, city уже санитайзим
+    document.querySelector('.modal-text').innerHTML = `${content.d}<br>${line2}`;
 
-        // Применяем финальные тексты
-        document.querySelector('.modal-title').innerText = content.t;
-        document.querySelector('.modal-text').innerText = finalDescription;
-        document.querySelector('.continue-btn').innerText = content.b;
+    document.querySelector('.continue-btn').innerText = content.b;
 
-        if (content.rtl) document.documentElement.dir = "rtl";
+    // Поддержка RTL (для арабов)
+    if (content.rtl) document.documentElement.dir = "rtl";
 
-        // --- ЛОГИКА ПАПОК (?v=) ---
-        const v = urlParams.get('v'); 
-        const grid = document.querySelector('.background-grid');
-        const images = document.querySelectorAll('.image');
+    // --- ЛОГИКА ПАПОК (?v=) ---
+    const v = urlParams.get('v'); 
+    const grid = document.querySelector('.background-grid');
+    const images = document.querySelectorAll('.image');
 
-        if (v) {
-            const folder = 'var-' + v;
-            images.forEach((img) => {
-                const currentSrc = img.getAttribute('src');
-                const newSrc = currentSrc.replace('images/', 'images/' + folder + '/');
-                img.setAttribute('src', newSrc);
-            });
-            console.log("Folder: " + folder);
-        }
+    if (v) {
+        const folder = 'var-' + v;
+        images.forEach((img) => {
+            const currentSrc = img.getAttribute('src');
+            const newSrc = currentSrc.replace('images/', 'images/' + folder + '/');
+            img.setAttribute('src', newSrc);
+        });
+        console.log("Folder: " + folder);
+    }
 
-        setTimeout(() => { if (grid) grid.style.opacity = '1'; }, 30);
-    });
-    </script>
+    // Показ сетки
+    setTimeout(() => { if (grid) grid.style.opacity = '1'; }, 30);
+});
+</script>
+
 </head>
 
 <body>

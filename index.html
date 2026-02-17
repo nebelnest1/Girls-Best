@@ -168,6 +168,28 @@
             .modal-title { font-size: 26px; line-height: 32px; }
             .modal-text { font-size: 18px; line-height: 24px; }
         }
+
+        /* Эффект дыхания для картинок */
+.image {
+    transition: transform 0.5s ease-in-out;
+    animation: breathe 4s ease-in-out infinite;
+    transform-origin: center center;
+}
+
+/* Обязательно добавь это контейнеру, чтобы картинка не вылезала за края при увеличении */
+.image-container {
+    overflow: hidden; 
+}
+
+@keyframes breathe {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); } /* Увеличиваем на 5% */
+}
+
+/* Чтобы бабы не "дышали" синхронно, как в армии, добавим задержки */
+.image-container:nth-child(2n) .image { animation-delay: 0.5s; animation-duration: 4.5s; }
+.image-container:nth-child(3n) .image { animation-delay: 1.2s; animation-duration: 5s; }
+.image-container:nth-child(4n) .image { animation-delay: 0.8s; animation-duration: 3.8s; }
     </style>
 
     <script defer src="./assets/scripts/common.js"></script>

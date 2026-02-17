@@ -79,19 +79,28 @@
 
     <script defer src="./assets/scripts/common.js"></script>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const v = urlParams.get('v') || '1';
+   <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const v = urlParams.get('v'); // Теперь мы просто берем значение
+
+        // Если параметр 'v' есть в ссылке (например, ?v=2)
+        if (v) {
             const folder = 'var-' + v;
             const images = document.querySelectorAll('.image');
+            
             images.forEach((img) => {
                 const currentSrc = img.getAttribute('src');
+                // Вставляем папку в путь: images/photo_1.webp -> images/var-2/photo_1.webp
                 const newSrc = currentSrc.replace('images/', 'images/' + folder + '/');
                 img.setAttribute('src', newSrc);
             });
-        });
-    </script>
+            console.log("Загружены картинки из папки: " + folder);
+        } else {
+            console.log("Загружены дефолтные картинки из корня /images/");
+        }
+    });
+</script>
 </head>
 
 <body>

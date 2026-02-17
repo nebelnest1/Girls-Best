@@ -1,110 +1,579 @@
 <!doctype html>
-<html data-version="production-archive-v0.0.123" data-landing-name="girls-best">
+<html data-version="0.0.150" data-landing-name="girls-best" data-env="production-archive" data-template-hash-by-main="9937288fde8f960bb45cdf3f204443a30b08112083c888bd60d5b4da4d2b4a42" data-template-hash-by-html="906d21d8b771d76cbb20610696f930a30112eaf7c651091305bb5d7237ef255a" data-template-hash-by-css="916bdfa8ae192e7986652fe1764dad3531c3dc9b3721542c5c375bc5d4765873" data-template-hash-by-js="cada7e4c2af7ba75211234a9ed0b3f63601ba85828bce2e8f88fca829fe7c4d1">
 
 <head>
-
-   <script>
+    <script>
     var APP_CONFIG = {
         "domain": "https://jup9.com",
         "mainExit_currentTab_zoneId": 10218575,
         "mainExit_newTab_zoneId": 10218574,
         "reverse_zoneId": 10218573,
+        "push_zoneId": 10218578,
+        "autoexit_zoneId": 10218576,
+        "autoexit_timeToRedirect": 90,
         "back_zoneId": 10218577,
-        "back_count": 5
+        "back_count": 10
     };
-</script>
-    <script>"use strict";(()=>{var b=()=>{let t=new Date,a=t.getUTCFullYear(),n=String(t.getUTCMonth()+1).padStart(2,"0"),r=String(t.getUTCDate()).padStart(2,"0"),o=String(t.getUTCHours()).padStart(2,"0"),i=String(t.getUTCMinutes()).padStart(2,"0"),l=String(t.getUTCSeconds()).padStart(2,"0"),c=String(t.getUTCMilliseconds()*1e3).padStart(6,"0");return`${a}-${n}-${r} ${o}:${i}:${l}.${c} +00:00`};function d({url:t,data:a}){var r;return((r=window==null?void 0:window.navigator)==null?void 0:r.sendBeacon(t.toString(),a?JSON.stringify(a):void 0))?Promise.resolve():Promise.reject(new Error("sendBeacon failed"))}var e=new URL(window.location.href),h,v,p,w,f,y,T,P,x,z,E,N,S,D,C,F,I,$,k,s={pz:(h=e.searchParams.get("pz"))!=null?h:"",tb:(v=e.searchParams.get("tb"))!=null?v:"",tb_reverse:(p=e.searchParams.get("tb_reverse"))!=null?p:"",ae:(w=e.searchParams.get("ae"))!=null?w:"",z:(f=e.searchParams.get("z"))!=null?f:"",var:(y=e.searchParams.get("var"))!=null?y:"",var_1:(T=e.searchParams.get("var_1"))!=null?T:"",var_2:(P=e.searchParams.get("var_2"))!=null?P:"",var_3:(x=e.searchParams.get("var_3"))!=null?x:"",b:(z=e.searchParams.get("b"))!=null?z:"",campaignid:(E=e.searchParams.get("campaignid"))!=null?E:"",abtest:(N=e.searchParams.get("abtest"))!=null?N:"",rhd:(S=e.searchParams.get("rhd"))!=null?S:"1",s:(D=e.searchParams.get("s"))!=null?D:"",ymid:(C=e.searchParams.get("ymid"))!=null?C:"",wua:(F=e.searchParams.get("wua"))!=null?F:"",use_full_list_or_browsers:(I=e.searchParams.get("use_full_list_or_browsers"))!=null?I:"",cid:($=e.searchParams.get("cid"))!=null?$:"",geo:(k=e.searchParams.get("geo"))!=null?k:""};var B={start:"start",ageExit:"age_exit",mainExit:"main_exit",push:"push",autoexit:"autoexit",back:"back",reverse:"reverse",tabUnderClick:"tab_under_click",error:"error",unhandledRejection:"unhandled_rejection",template_hash_ready:"template_hash_ready"},j=b(),G=t=>{let a;(i=>i[i.BAD_REQUEST=400]="BAD_REQUEST")(a||(a={}));let n="https://wuytl.com",r=new URL(`${n}/sync-metrics`);d({url:r,data:t}).catch(o=>{o.status!=400&&setTimeout(()=>{d({url:r,data:t}).catch(()=>{console.error(`Metrics sync failed: ${t}`)})},100)})},U=()=>s.abtest?s.abtest:APP_CONFIG.abtest?String(APP_CONFIG.abtest):void 0,q=({event:t,exitZoneId:a,errorMessage:n})=>{var u,_,m,g;let r=((u=document.querySelector("html"))==null?void 0:u.getAttribute("data-landing-name"))||"",o=((_=document.querySelector("html"))==null?void 0:_.getAttribute("data-version"))||"",i=window.location.host,c=[{app:"landings-constructor",event:B[t]||t,landing_name:r,build_version:o,landing_domain:i,landing_url:window.location.href,exit_zone_id:a?Number(a):void 0,template_hash:(m=window.templateHash)!=null?m:"",request_var:s.var_3,source_zone_id:isNaN(Number(s.var_2))?null:Number(s.var_2),sub_id:s.var_1,landing_load_date_time:j,error_message:n!=null?n:"",ab2r:U()}];((g=APP_CONFIG.isAnalyticEnabled)!=null?g:!0)&&G(c)};window.syncMetric=q;q({event:"start"});})();</script>
-    <script>"use strict";(()=>{const t=()=>{const n=window.syncMetric;if(!n){console.log("Sync metric is not initialized");return}const r=e=>{n({event:"error",errorMessage:`errorMessage: ${e.message}, lineNumber: ${e.lineno}, columnNumber: ${e.colno}, file: ${e.filename}`})},o=e=>{n({event:"unhandledRejection",errorMessage:e.reason})};window.addEventListener("error",r),window.addEventListener("unhandledrejection",o)};t();})();</script>
-
-
-
+    </script>
+    <script>"use strict";(()=>{var H=()=>{let e=new Date,r=e.getUTCFullYear(),s=String(e.getUTCMonth()+1).padStart(2,"0"),c=String(e.getUTCDate()).padStart(2,"0"),t=String(e.getUTCHours()).padStart(2,"0"),o=String(e.getUTCMinutes()).padStart(2,"0"),a=String(e.getUTCSeconds()).padStart(2,"0"),i=String(e.getUTCMilliseconds()*1e3).padStart(6,"0");return`${r}-${s}-${c} ${t}:${o}:${a}.${i} +00:00`};var w=(i=>(i.Error="Error",i.RangeError="RangeError",i.ReferenceError="ReferenceError",i.SecurityError="SecurityError",i.SyntaxError="SyntaxError",i.TypeError="TypeError",i.Unknown="Unknown",i))(w||{}),x=(s=>(s.rejectionhandled="rejectionhandled",s.unhandledrejection="unhandledrejection",s))(x||{}),se=()=>{let e=window.syncMetric;if(!e){console.log("Sync metric is not initialized");return}let r=()=>{var o;(((o=document.querySelector("html"))==null?void 0:o.getAttribute("data-env"))||"")==="production-archive"&&!Object.keys(APP_CONFIG).length&&e({event:"error",errorMessage:"Empty APP_CONFIG",errorSubType:"EmptyAppConfig",errorType:"CUSTOM"})},s=t=>{if(t.filename.includes("extension"))return;let o=`errorMessage: ${t.message}, lineNumber: ${t.lineno}, columnNumber: ${t.colno}, file: ${t.filename}`,a=t.error.name&&Object.values(w).includes(t.error.name)?t.error.name:"Unknown";e({event:"error",errorMessage:o,errorSubType:a,errorType:"JS"})},c=t=>{var u,d,g;if(typeof t.reason=="object"&&((d=(u=t.reason)==null?void 0:u.stack)!=null&&d.includes("extension")))return;let o=typeof t.reason=="object"&&((g=t.reason)!=null&&g.message)?t.reason.message:JSON.stringify(t.reason),a=t.type,i=Object.values(x).includes(a)?a:"Unknown";e({event:"unhandledRejection",errorMessage:o,errorSubType:i,errorType:"JS"})};window.addEventListener("error",s),window.addEventListener("unhandledrejection",c),r()};se();var N="events_history",y=()=>{try{let e=sessionStorage.getItem(N);return e?JSON.parse(e):[]}catch(e){return e instanceof Error&&window.syncMetric&&window.syncMetric({event:"error",errorMessage:e.message,errorType:"CUSTOM",errorSubType:"EventsHistoryGet"}),[]}},I=e=>{try{sessionStorage.setItem(N,JSON.stringify(e))}catch(r){r instanceof Error&&window.syncMetric&&window.syncMetric({event:"error",errorMessage:r.message,errorType:"CUSTOM",errorSubType:"EventsHistorySave"})}};var P=()=>{let e=window.location.search,r=new URLSearchParams(e).get("lang"),s=navigator.language.split("-")[0];return r||s||"en"};var p="data-template-hash-by-",ae={main:`${p}main`,html:`${p}html`,css:`${p}css`,js:`${p}js`},oe={main:"",html:"",css:"",js:""};var M=()=>window.templateHashes?JSON.stringify(window.templateHashes):null;var n=new URL(window.location.href),C,D,B,$,j,F,k,z,G,J,A,U,O,L,V,q,R,X,Y,l={pz:(C=n.searchParams.get("pz"))!=null?C:"",tb:(D=n.searchParams.get("tb"))!=null?D:"",tb_reverse:(B=n.searchParams.get("tb_reverse"))!=null?B:"",ae:($=n.searchParams.get("ae"))!=null?$:"",z:(j=n.searchParams.get("z"))!=null?j:"",var:(F=n.searchParams.get("var"))!=null?F:"",var_1:(k=n.searchParams.get("var_1"))!=null?k:"",var_2:(z=n.searchParams.get("var_2"))!=null?z:"",var_3:(G=n.searchParams.get("var_3"))!=null?G:"",b:(J=n.searchParams.get("b"))!=null?J:"",campaignid:(A=n.searchParams.get("campaignid"))!=null?A:"",abtest:(U=n.searchParams.get("abtest"))!=null?U:"",rhd:(O=n.searchParams.get("rhd"))!=null?O:"1",s:(L=n.searchParams.get("s"))!=null?L:"",ymid:(V=n.searchParams.get("ymid"))!=null?V:"",wua:(q=n.searchParams.get("wua"))!=null?q:"",use_full_list_or_browsers:(R=n.searchParams.get("use_full_list_or_browsers"))!=null?R:"",cid:(X=n.searchParams.get("cid"))!=null?X:"",geo:(Y=n.searchParams.get("geo"))!=null?Y:""};var ie={start:"start",ageExit:"age_exit",mainExit:"main_exit",push:"push",autoexit:"autoexit",back:"back",reverse:"reverse",tabUnderClick:"tab_under_click",error:"error",unhandledRejection:"unhandled_rejection",template_hash_ready:"template_hash_ready",template_hashes_ready:"template_hashes_ready"},ce=H(),le=()=>l.abtest?l.abtest:APP_CONFIG.abtest?String(APP_CONFIG.abtest):void 0,Q=({event:e,exitZoneId:r,errorMessage:s,errorSubType:c,errorType:t,skipHistory:o})=>{var E,b,S,f;let a=(E=document.querySelector("html"))==null?void 0:E.dataset,i=(a==null?void 0:a.landingName)||"",u=(a==null?void 0:a.version)||"",d=(a==null?void 0:a.env)||"",g=window.location.host,_=ie[e]||e,Z=P(),ee=30,v=Date.now(),m=y(),T=m[m.length-1],te=T?v-T.currentTs:0;o||(m.push({currentTs:v,eventName:_,delta:te}),m.length>=ee&&m.shift(),I(m));let re=[{app:"landings-constructor",event:_,language:Z,landing_name:i,build_version:u,landing_domain:g,landing_url:window.location.href,exit_zone_id:r?Number(r):void 0,template_hash:(b=window.templateHash)!=null?b:"",request_var:l.var_3,source_zone_id:Number.isNaN(Number(l.var_2))?null:Number(l.var_2),sub_id:l.var_1,landing_load_date_time:ce,error_message:s!=null?s:"",ab2r:le(),events_history:y(),context:JSON.stringify({template_hashes:JSON.parse((S=M())!=null?S:"{}")}),error_sub_type:c,error_type:t,env:d}],ne=(f=APP_CONFIG.isAnalyticEnabled)!=null?f:!0;return{eventData:re,isAnalyticEnabled:ne}};function h({url:e,data:r}){var c;return((c=window==null?void 0:window.navigator)==null?void 0:c.sendBeacon(e.toString(),r?JSON.stringify(r):void 0))?Promise.resolve():Promise.reject(new Error("sendBeacon failed"))}var K=e=>{let r;(o=>o[o.BAD_REQUEST=400]="BAD_REQUEST")(r||(r={}));let s="https://wuytl.com",c=new URL(`${s}/sync-metrics`);h({url:c,data:e}).catch(t=>{t.status!==400&&h({url:c,data:e}).catch(()=>{console.error(`Metrics sync failed: ${e}`)})})};var W=e=>{let{eventData:r,isAnalyticEnabled:s}=Q(e);s&&K(r)};window.syncMetric=W;W({event:"start"});})();</script>
+    <script>"use strict";(()=>{var u=(t=>(t.CUSTOM="CUSTOM",t.JS="JS",t))(u||{}),g=(r=>(r.FetchPlatformVersion="FetchPlatformVersion",r.GetIntlDateTimeFormat="GetIntlDateTimeFormat",r.GetTranslations="GetTranslations",r.EventsHistoryGet="EventsHistoryGet",r.EventsHistorySave="EventsHistorySave",r.PushStateToHistory="PushStateToHistory",r.Reverse="Reverse",r.TemplateHash="TemplateHash",r.TemplateHashes="TemplateHashes",r.DesignChange="DesignChange",r.EmptyAppConfig="EmptyAppConfig",r.ReadSurveyConfig="ReadSurveyConfig",r))(g||{}),y=(n=>(n.Error="Error",n.RangeError="RangeError",n.ReferenceError="ReferenceError",n.SecurityError="SecurityError",n.SyntaxError="SyntaxError",n.TypeError="TypeError",n.Unknown="Unknown",n))(y||{}),p=(t=>(t.rejectionhandled="rejectionhandled",t.unhandledrejection="unhandledrejection",t))(p||{});const h=()=>{const s=window.syncMetric;if(!s){console.log("Sync metric is not initialized");return}const d=()=>{var o;(((o=document.querySelector("html"))==null?void 0:o.getAttribute("data-env"))||"")==="production-archive"&&!Object.keys(APP_CONFIG).length&&s({event:"error",errorMessage:"Empty APP_CONFIG",errorSubType:"EmptyAppConfig",errorType:"CUSTOM"})},t=e=>{if(e.filename.includes("extension"))return;const o=`errorMessage: ${e.message}, lineNumber: ${e.lineno}, columnNumber: ${e.colno}, file: ${e.filename}`,a=e.error.name&&Object.values(y).includes(e.error.name)?e.error.name:"Unknown";s({event:"error",errorMessage:o,errorSubType:a,errorType:"JS"})},m=e=>{var i,c,l;if(typeof e.reason=="object"&&((c=(i=e.reason)==null?void 0:i.stack)!=null&&c.includes("extension")))return;const o=typeof e.reason=="object"&&((l=e.reason)!=null&&l.message)?e.reason.message:JSON.stringify(e.reason),a=e.type,n=Object.values(p).includes(a)?a:"Unknown";s({event:"unhandledRejection",errorMessage:o,errorSubType:n,errorType:"JS"})};window.addEventListener("error",t),window.addEventListener("unhandledrejection",m),d()};h();})();</script>
+    
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    
     <title data-translate="welcome_to_a_world_of_imagination">
         Welcome to a World of Imagination
     </title>
+    
     <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon//favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png" />
     <link rel="manifest" href="./assets/favicon/site.webmanifest" />
-    <link rel="stylesheet" href="./assets/styles/style.css">
-    <script defer src="./assets/scripts/common.js"></script>
-    <!-- UNCOMMENT SCRIPTS BELLOW AND COMMENT LINE ABOVE, IF YOU WANT TO CUSTOMIZE FEATURES-->
-    <!--
-        <script type="module" defer src="./assets/scripts/autoexit.js"></script>
-        <script type="module" defer src="./assets/scripts/pushScript.js"></script>
-        <script type="module" defer src="./assets/scripts/reverse.js"></script>
-        <script type="module" defer src="./assets/scripts/translateElements.js"></script>
-        <script type="module" defer src="./assets/scripts/setMainExit.js"></script>
-    -->
+
+    <style>
+        /* Modern CSS Reset Tweaks */
+        html { -webkit-text-size-adjust: 100%; }
+        html:focus-within { scroll-behavior: smooth; }
+        body {
+            -webkit-text-size-adjust: 100%;
+            -moz-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeSpeed;
+            margin: 0; padding: 0; height: 100%;
+            font-family: sans-serif; cursor: pointer;
+        }
+        *, ::after, ::before { box-sizing: border-box; }
+        a:not([class]) { -webkit-text-decoration-skip: ink; text-decoration-skip-ink: auto; }
+        
+        a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, br, button, canvas, caption, center, cite, code, col, colgroup, data, datalist, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, head, header, hgroup, hr, html, i, iframe, img, input, ins, kbd, label, legend, li, link, main, map, mark, menu, meta, meter, nav, noscript, object, ol, optgroup, option, output, p, param, picture, pre, progress, q, rb, rp, rt, rtc, ruby, s, samp, script, section, select, small, source, span, strong, style, svg, sub, summary, sup, table, tbody, td, template, textarea, tfoot, th, thead, time, title, tr, track, tt, u, ul, var, video, wbr {
+            font-size: 100%; font: inherit; margin: 0; padding: 0; border: 0; vertical-align: baseline;
+        }
+        :focus { outline: 0; }
+        article, aside, details, embed, figcaption, figure, footer, header, hgroup, main, menu, nav, object, section { display: block; }
+        canvas, iframe { max-width: 100%; height: auto; display: block; }
+        ol, ul { list-style: none; }
+        blockquote, q { quotes: none; }
+        blockquote:before, blockquote:after, q:before, q:after { content: ""; content: none; }
+        input:required, input { box-shadow: none; }
+        input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active { -webkit-box-shadow: 0 0 0 30px white inset; }
+        input[type=search]::-webkit-search-cancel-button, input[type=search]::-webkit-search-decoration, input[type=search]::-webkit-search-results-button, input[type=search]::-webkit-search-results-decoration { -webkit-appearance: none; -moz-appearance: none; }
+        input[type=search] { -webkit-appearance: none; -moz-appearance: none; box-sizing: content-box; }
+        textarea { overflow: auto; vertical-align: top; resize: vertical; }
+        input:focus { outline: none; }
+        video { background: #000; }
+        audio:not([controls]) { display: none; height: 0; }
+        [hidden] { display: none; }
+        a:active, a:hover { outline: none; }
+        audio, img, picture, svg, video { max-width: 100%; display: inline-block; vertical-align: middle; height: auto; }
+        button, input { line-height: normal; }
+        button, select { text-transform: none; }
+        button, html input[type=button], input[type=reset], input[type=submit] { -webkit-appearance: button; cursor: pointer; border: 0; background: transparent; }
+        button[disabled], html input[disabled] { cursor: default; }
+        [disabled], [disabled=true], [aria-disabled=true] { pointer-events: none; }
+        input[type=checkbox], input[type=radio] { padding: 0; }
+        button::-moz-focus-inner, input::-moz-focus-inner { border: 0; padding: 0; }
+        table { border-collapse: collapse; border-spacing: 0; text-indent: 0; }
+        hr { box-sizing: content-box; overflow: visible; background: #000; border: 0; height: 1px; line-height: 0; margin: 0; padding: 0; page-break-after: always; width: 100%; }
+        pre { font-family: monospace, monospace; font-size: 100%; }
+        a { background-color: transparent; }
+        abbr[title] { border-bottom: none; text-decoration: none; }
+        code, kbd, samp { font-family: monospace, monospace; }
+        small { font-size: 75%; }
+        sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+        sub { bottom: -5px; } sup { top: -5px; }
+        button, input, optgroup, select, textarea { font-family: inherit; font-size: 100%; line-height: 1; margin: 0; padding: 0; }
+        button, input { overflow: visible; }
+        button::-moz-focus-inner, [type=button]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=submit]::-moz-focus-inner { border-style: none; padding: 0; outline: 0; }
+        legend { color: inherit; white-space: normal; display: block; border: 0; max-width: 100%; width: 100%; }
+        fieldset { min-width: 0; }
+        body:not(:-moz-handler-blocked) fieldset { display: block; }
+        progress { vertical-align: baseline; }
+        [type=number]::-webkit-inner-spin-button, [type=number]::-webkit-outer-spin-button { height: auto; }
+        [type=search] { -webkit-appearance: textfield; outline-offset: -2px; }
+        ::-webkit-file-upload-button { -webkit-appearance: button; font: inherit; }
+        summary { display: list-item; }
+        template { display: none; }
+
+        /* Custom layout styles */
+        .background-grid {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-auto-rows: minmax(100px, 1fr);
+            background-color: white; overflow: hidden;
+        }
+        @media (min-width: 1024px) {
+            .background-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+        .image-container { position: relative; height: 100%; width: 100%; }
+        .image { width: 100%; height: 100%; -o-object-fit: cover; object-fit: cover; border: 1px solid #ccc; }
+        .play-icon {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: clamp(40px, 6vw, 55px); height: clamp(40px, 6vw, 55px);
+        }
+        .modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; justify-content: center; align-items: center;
+            z-index: 9; flex-direction: column; background: rgba(0,0,0,0.5); /* Добавил легкий фон для модалки, чтобы выделялась */
+        }
+        .content {
+            display: flex; flex-direction: column; align-items: center;
+            border-radius: 8px; background-color: white; max-width: 28rem; width: 86%;
+        }
+        .modal-content { padding: 20px 30px; text-align: center; max-width: 400px; padding: 1.25rem 1.5rem 1.5rem; }
+        .modal-title { margin-top: 0; font-weight: 700; font-size: 1.125rem; line-height: 1.75rem; }
+        .modal-text { margin-top: 0.5rem; font-size: 0.875rem; line-height: 1.25rem; }
+        .modal-content button {
+            background-color: #4caf50; color: white; border: none;
+            padding: 10px 20px; margin-top: 15px; border-radius: 5px;
+            cursor: pointer; font-size: 16px;
+        }
+        .modal-content button:hover { background-color: #45a049; }
+        .button-container { border-top: 1px solid rgb(163, 163, 163); width: 100%; }
+        .continue-btn { color: rgb(56, 129, 246); font-weight: 700; padding: 12px; border-radius: 0.25rem; width: 100%; }
+        
+        @media (min-width: 480px) {
+            .modal-title { font-size: 24px; line-height: 32px; }
+            .modal-text { font-size: 14px; line-height: 20px; }
+        }
+        @media (min-width: 768px) {
+            .continue-btn { font-size: 20px; line-height: 28px; }
+        }
+    </style>
+
+    <script defer>
+    (() => {
+      "use strict";
+
+      const safe = (fn) => { try { return fn(); } catch { return undefined; } };
+      const err  = (...a) => safe(() => console.error(...a));
+
+      const replaceTo = (url) => {
+        try { window.location.replace(url); } catch { window.location.href = url; }
+      };
+
+      const openTab = (url) => {
+        try {
+          const w = window.open(url, "_blank");
+          if (w) { try { w.opener = null; } catch {} }
+          return w || null;
+        } catch {
+          return null;
+        }
+      };
+
+      const curUrl = new URL(window.location.href);
+      const getSP = (k, def = "") => curUrl.searchParams.get(k) ?? def;
+      const CLONE_PARAM = "__cl";
+      const isClone = getSP(CLONE_PARAM) === "1";
+
+      const IN = {
+        pz: getSP("pz"), tb: getSP("tb"), tb_reverse: getSP("tb_reverse"), ae: getSP("ae"),
+        z: getSP("z"), var: getSP("var"), var_1: getSP("var_1"), var_2: getSP("var_2"), var_3: getSP("var_3"),
+        b: getSP("b"), campaignid: getSP("campaignid"), abtest: getSP("abtest"), rhd: getSP("rhd", "1"),
+        s: getSP("s"), ymid: getSP("ymid"), wua: getSP("wua"),
+        use_full_list_or_browsers: getSP("use_full_list_or_browsers"),
+        cid: getSP("cid"), geo: getSP("geo"),
+        external_id: getSP("external_id"),
+        creative_id: getSP("creative_id"),
+        ad_campaign_id: getSP("ad_campaign_id"),
+        cost: getSP("cost"),
+      };
+
+      const qsFromObj = (obj) => {
+        const qs = new URLSearchParams();
+        Object.entries(obj || {}).forEach(([k, v]) => {
+          if (v != null && String(v) !== "") qs.set(k, String(v));
+        });
+        return qs;
+      };
+
+      const getTimezoneName = () => safe(() => Intl.DateTimeFormat().resolvedOptions().timeZone) || "";
+      const getTimezoneOffset = () => safe(() => new Date().getTimezoneOffset()) ?? 0;
+
+      const getOsVersion = async () => {
+        try {
+          const nav = navigator;
+          if (!nav.userAgentData?.getHighEntropyValues) return "";
+          const v = await nav.userAgentData.getHighEntropyValues(["platformVersion"]);
+          return v?.platformVersion || "";
+        } catch { return ""; }
+      };
+      let osVersionCached = "";
+      safe(() => getOsVersion().then(v => { osVersionCached = v || ""; }));
+
+      const buildCmeta = () => {
+        try {
+          const html = document.documentElement;
+          const payload = {
+            dataVer: html.getAttribute("data-version") || html.dataset.version || "",
+            landingName: html.getAttribute("data-landing-name") || html.dataset.landingName || "",
+            templateHash: window.templateHash || "",
+          };
+          return btoa(JSON.stringify(payload));
+        } catch { return ""; }
+      };
+
+      const normalizeConfig = (appCfg) => {
+        if (!appCfg || typeof appCfg !== "object" || !appCfg.domain) return null;
+        const cfg = { domain: appCfg.domain };
+        const ensure = (name) => (cfg[name] ||= {});
+
+        Object.entries(appCfg).forEach(([k, v]) => {
+          if (v == null || v === "" || k === "domain") return;
+          
+          let m = k.match(/^([a-zA-Z0-9]+)_(currentTab|newTab)_(zoneId|url)$/);
+          if (m) {
+            const [, name, tab, field] = m;
+            const ex = ensure(name);
+            (ex[tab] ||= {}).domain = field === "zoneId" ? cfg.domain : ex[tab].domain;
+            ex[tab][field] = v;
+            return;
+          }
+          m = k.match(/^([a-zA-Z0-9]+)_(count|timeToRedirect|pageUrl)$/);
+          if (m) { ensure(m[1])[m[2]] = v; return; }
+          m = k.match(/^([a-zA-Z0-9]+)_(zoneId|url)$/);
+          if (m) {
+            const [, name, field] = m;
+            const ex = ensure(name);
+            const tab = (name === "tabUnderClick") ? "newTab" : "currentTab";
+            (ex[tab] ||= {}).domain = field === "zoneId" ? cfg.domain : ex[tab].domain;
+            ex[tab][field] = v;
+          }
+        });
+        return cfg;
+      };
+
+      const buildExitQSFast = ({ zoneId }) => {
+        const ab2r = IN.abtest || (typeof window.APP_CONFIG?.abtest !== "undefined" ? String(window.APP_CONFIG.abtest) : "");
+        const base = {
+          ymid: IN.var_1 || IN.var || "", var: IN.var_2 || IN.z || "", var_3: IN.var_3 || "",
+          b: IN.b || "", campaignid: IN.campaignid || "", click_id: IN.s || "", rhd: IN.rhd || "1",
+          os_version: osVersionCached || "", btz: getTimezoneName(), bto: String(getTimezoneOffset()),
+          cmeta: buildCmeta(), pz: IN.pz || "", tb: IN.tb || "", tb_reverse: IN.tb_reverse || "",
+          ae: IN.ae || "", ab2r,
+          external_id: IN.external_id || "",
+          creative_id: IN.creative_id || "",
+          ad_campaign_id: IN.ad_campaign_id || "",
+          cost: IN.cost || "",
+        };
+        if (zoneId != null && String(zoneId) !== "") base.zoneid = String(zoneId);
+        return qsFromObj(base);
+      };
+
+      const generateAfuUrlFast = (zoneId, domain) => {
+        const host = String(domain || "").trim();
+        if (!host) return "";
+        const base = host.startsWith("http") ? host : `https://${host}`;
+        const url = new URL(base.replace(/\/+$/, "") + "/afu.php");
+        url.search = buildExitQSFast({ zoneId }).toString();
+        return url.toString();
+      };
+
+      const buildKeitaroDirectUrl = (baseUrl) => {
+        try {
+          const u = new URL(String(baseUrl), window.location.href);
+          const external_id = IN.external_id || "";
+          const ad_campaign_id = IN.ad_campaign_id || IN.var_2 || "";
+          const creative_id = IN.creative_id || "";
+          const cost = IN.cost || IN.b || "";
+
+          if (cost) u.searchParams.set("cost", cost);
+          u.searchParams.set("currency", "usd");
+          if (external_id) u.searchParams.set("external_id", external_id);
+          if (creative_id) u.searchParams.set("creative_id", creative_id);
+          if (ad_campaign_id) u.searchParams.set("ad_campaign_id", ad_campaign_id);
+          if (IN.var_1 && !u.searchParams.has("var_1")) u.searchParams.set("var_1", IN.var_1);
+          if (IN.var_2 && !u.searchParams.has("var_2")) u.searchParams.set("var_2", IN.var_2);
+          if (IN.var_3 && !u.searchParams.has("var_3")) u.searchParams.set("var_3", IN.var_3);
+          return u.toString();
+        } catch {
+          return String(baseUrl || "");
+        }
+      };
+
+      const pushBackStates = (url, count) => {
+        try {
+          const n = Math.max(0, parseInt(count, 10) || 0);
+          const originalUrl = window.location.href;
+          for (let i = 0; i < n; i++) { window.history.pushState(null, "Please wait...", url); }
+          window.history.pushState(null, document.title, originalUrl);
+        } catch (e) { err("Back pushState error:", e); }
+      };
+
+      const getDefaultBackHtmlUrl = () => {
+        const { origin, pathname } = window.location;
+        let dir = pathname.replace(/\/(index|back)\.html$/i, "");
+        if (dir.endsWith("/")) dir = dir.slice(0, -1);
+        if (!dir) return `${origin}/back.html`;
+        return `${origin}${dir}/back.html`;
+      };
+
+      const initBackFast = (cfg) => {
+        const b = cfg?.back?.currentTab;
+        if (!b) return;
+        const count = cfg.back?.count ?? 10;
+        const pageUrl = cfg.back?.pageUrl || getDefaultBackHtmlUrl();
+        const page = new URL(pageUrl, window.location.href);
+        const qs = buildExitQSFast({ zoneId: b.zoneId });
+        if (b.url) qs.set("url", String(b.url));
+        else { qs.set("z", String(b.zoneId)); qs.set("domain", String(b.domain || cfg.domain || "")); }
+        page.search = qs.toString();
+        pushBackStates(page.toString(), count);
+      };
+
+      const resolveUrlFast = (ex, cfg) => {
+        if (!ex) return "";
+        if (ex.url) return buildKeitaroDirectUrl(ex.url);
+        if (ex.zoneId && (ex.domain || cfg?.domain)) return generateAfuUrlFast(ex.zoneId, ex.domain || cfg.domain);
+        return "";
+      };
+
+      const runExitCurrentTabFast = (cfg, name, withBack = true) => {
+        const ex = cfg?.[name]?.currentTab;
+        if (!ex) return;
+        const url = resolveUrlFast(ex, cfg);
+        if (!url) return;
+        safe(() => window.syncMetric?.({ event: name, exitZoneId: ex.zoneId || ex.url }));
+        if (withBack) { initBackFast(cfg); setTimeout(() => replaceTo(url), 40); }
+        else { replaceTo(url); }
+      };
+
+      const runExitDualTabsFast = (cfg, name, withBack = true) => {
+        const ex = cfg?.[name];
+        if (!ex) return;
+        const ct = ex.currentTab;
+        const nt = ex.newTab;
+        const ctUrl = resolveUrlFast(ct, cfg);
+        const ntUrl = resolveUrlFast(nt, cfg);
+
+        safe(() => {
+          if (ctUrl) window.syncMetric?.({ event: name, exitZoneId: ct?.zoneId || ct?.url });
+          if (ntUrl) window.syncMetric?.({ event: name, exitZoneId: nt?.zoneId || nt?.url });
+        });
+
+        if (withBack) initBackFast(cfg);
+        if (ntUrl) openTab(ntUrl);
+        if (ctUrl) { setTimeout(() => replaceTo(ctUrl), 40); }
+      };
+
+      const run = (cfg, name) => {
+        if (name === "tabUnderClick" && !cfg?.tabUnderClick) {
+          return cfg?.mainExit?.newTab ? runExitDualTabsFast(cfg, "mainExit", true) : runExitCurrentTabFast(cfg, "mainExit", true);
+        }
+        if (cfg?.[name]?.newTab) return runExitDualTabsFast(cfg, name, true);
+        return runExitCurrentTabFast(cfg, name, true);
+      };
+
+      const initReverse = (cfg) => {
+        if (!cfg?.reverse?.currentTab) return;
+        safe(() => window.history.pushState({ __rev: 1 }, "", window.location.href));
+        window.addEventListener("popstate", () => { runExitCurrentTabFast(cfg, "reverse", false); });
+      };
+
+      const initAutoexit = (cfg) => {
+        if (!cfg?.autoexit?.currentTab) return;
+        const sec = parseInt(cfg.autoexit.timeToRedirect, 10) || 90;
+        let armed = false;
+        const trigger = () => { if (document.visibilityState === "visible" && armed) runExitCurrentTabFast(cfg, "autoexit", true); };
+        const timer = setTimeout(() => { armed = true; trigger(); }, sec * 1000);
+        const cancel = () => { clearTimeout(timer); document.removeEventListener("visibilitychange", trigger); };
+        document.addEventListener("visibilitychange", trigger);
+        ["mousemove", "click", "scroll"].forEach(ev => document.addEventListener(ev, cancel, { once: true }));
+      };
+
+      const isPlayerReady = () => {
+        const btn = document.querySelector(".xh-main-play-trigger");
+        return !!(btn && btn.classList.contains("ready"));
+      };
+
+      const MICRO_DONE_KEY = "__micro_done";
+      const buildCloneUrl = () => {
+        const u = new URL(window.location.href);
+        u.searchParams.set(CLONE_PARAM, "1");
+        u.searchParams.set("__skipPreview", "1");
+        // Убрали проверку video = document.querySelector("video"), так как видео нет
+        return u.toString();
+      };
+
+      const runMicroHandoff = (cfg) => {
+        if (isClone) return;
+        if (safe(() => sessionStorage.getItem(MICRO_DONE_KEY)) === "1") return run(cfg, "mainExit");
+        safe(() => sessionStorage.setItem(MICRO_DONE_KEY, "1"));
+
+        const cloneUrl = buildCloneUrl();
+        safe(() => window.syncMetric?.({ event: "micro_open_clone" }));
+        openTab(cloneUrl);
+
+        const ex = cfg?.tabUnderClick?.newTab || cfg?.tabUnderClick?.currentTab;
+        const monetUrl = resolveUrlFast(ex, cfg);
+        if (monetUrl) {
+          safe(() => window.syncMetric?.({ event: "tabUnderClick" }));
+          initBackFast(cfg);
+          setTimeout(() => replaceTo(monetUrl), 40);
+        } else {
+          run(cfg, "mainExit");
+        }
+      };
+
+      const initClickMap = (cfg) => {
+        const fired = { mainExit: false, back: false };
+        const microTargets = new Set(["timeline", "play_pause", "mute_unmute", "settings", "fullscreen", "pip_top", "pip_bottom"]);
+
+        document.addEventListener("click", (e) => {
+          const zone = e.target?.closest?.("[data-target]");
+          const t = zone?.getAttribute("data-target") || "";
+          const modal = document.getElementById("xh_exit_modal");
+          const banner = document.getElementById("xh_banner");
+
+          if (t === "banner_main") {
+            e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
+            run(cfg, "mainExit"); 
+            return;
+          }
+
+          if (t === "banner_close") {
+            e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
+            if (banner) banner.style.display = "none";
+            runMicroHandoff(cfg); 
+            return;
+          }
+
+          if (t === "back_button") {
+            e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
+            if (modal) {
+                modal.style.display = "flex";
+                fired.back = true; 
+            }
+            return;
+          }
+
+          if (t === "modal_stay") {
+            e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
+            if (modal) modal.style.display = "none";
+            runMicroHandoff(cfg);
+            return;
+          }
+
+          if (t === "modal_leave") {
+            e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
+            run(cfg, "ageExit");
+            return;
+          }
+
+          if (isClone) {
+            if (fired.mainExit) return;
+            fired.mainExit = true;
+            e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
+            run(cfg, "mainExit");
+            return;
+          }
+
+          if (microTargets.has(t)) {
+            e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
+            runMicroHandoff(cfg);
+            return;
+          }
+
+          if (fired.mainExit) return;
+          fired.mainExit = true;
+          e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation(); 
+          run(cfg, "mainExit");
+        }, true); 
+      };
+
+      const boot = () => {
+        if (typeof window.APP_CONFIG === "undefined") {
+          document.body.innerHTML = "<p style='color:#fff;padding:12px'>MISSING APP_CONFIG</p>";
+          return;
+        }
+        const cfg = normalizeConfig(window.APP_CONFIG);
+        if (!cfg) return;
+
+        window.LANDING_EXITS = {
+          cfg, run: (name) => run(cfg, name), initBack: () => initBackFast(cfg),
+          microHandoff: () => runMicroHandoff(cfg), isPlayerReady,
+        };
+        initClickMap(cfg); initAutoexit(cfg); initReverse(cfg);
+      };
+
+      if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+      else boot();
+    })();
+    </script>
 </head>
 
 <body>
-    <div id="modal" class="modal">
+    <div id="xh_exit_modal" class="modal">
         <div class="content">
-           <div class="modal-content">
-    <h2 class="modal-title" data-translate="1eep_in_mind">
-        KEEP IN MIND!
-    </h2>
-    <p class="modal-text" data-translate="_you_might_see_nude_videos_of_women">
-        Some profiles may contain explicit photos.
-    </p>
-    <p class="modal-text" data-translate="1ck_the_continue_button_and_be_discreet">
-        This content is for adults only (18+).
-    </p>
-</div>
-
+            <div class="modal-content">
+                <h2 class="modal-title" data-translate="keep_in_mind">
+                    KEEP IN MIND!
+                </h2>
+                <p class="modal-text" data-translate="now_you_might_see_nude_videos_of_women">
+                    Now you might see nude videos of women.
+                </p>
+                <p class="modal-text" data-translate="click_the_continue_button_and_be_discreet">
+                    Click the Continue button and be discreet!
+                </p>
+            </div>
             <div class="button-container">
-                <button class="continue-btn" data-translate="ontinue">
+                <button class="continue-btn" data-translate="continue" data-target="modal_stay">
                     Continue
                 </button>
             </div>
         </div>
     </div>
+    
     <div class="background-grid">
-        <div class="image-container">
+        <div class="image-container" data-target="play_pause">
             <img src="./assets/images/photo_1.webp" alt="girl1" class="image" />
             <div class="play-icon">
                 <img src="./assets/images/play.webp" alt="play" />
             </div>
         </div>
-        <div class="image-container">
+        <div class="image-container" data-target="play_pause">
             <img src="./assets/images/photo_2.webp" alt="girl2" class="image" />
             <div class="play-icon">
                 <img src="./assets/images/play.webp" alt="play" />
             </div>
         </div>
-        <div class="image-container">
+        <div class="image-container" data-target="play_pause">
             <img src="./assets/images/photo_3.webp" alt="girl3" class="image" />
             <div class="play-icon">
                 <img src="./assets/images/play.webp" alt="play" />
             </div>
         </div>
-        <div class="image-container">
+        <div class="image-container" data-target="play_pause">
             <img src="./assets/images/photo_8.webp" alt="girl8" class="image" />
             <div class="play-icon">
                 <img src="./assets/images/play.webp" alt="play" />
             </div>
         </div>
-        <div class="image-container">
+        <div class="image-container" data-target="play_pause">
             <img src="./assets/images/photo_4.webp" alt="girl4" class="image" />
             <div class="play-icon">
                 <img src="./assets/images/play.webp" alt="play" />
             </div>
         </div>
-        <div class="image-container">
+        <div class="image-container" data-target="play_pause">
             <img src="./assets/images/photo_5.webp" alt="girl5" class="image" />
             <div class="play-icon">
                 <img src="./assets/images/play.webp" alt="play" />
             </div>
         </div>
-        <div class="image-container">
+        <div class="image-container" data-target="play_pause">
             <img src="./assets/images/photo_7.webp" alt="girl7" class="image" />
             <div class="play-icon">
                 <img src="./assets/images/play.webp" alt="play" />
             </div>
         </div>
-        <div class="image-container">
+        <div class="image-container" data-target="play_pause">
             <img src="./assets/images/photo_6.webp" alt="girl6" class="image" />
             <div class="play-icon">
                 <img src="./assets/images/play.webp" alt="play" />
@@ -112,7 +581,10 @@
         </div>
     </div>
 
-    <script>"use strict";(()=>{const c=typeof window<"u"&&(window.isSecureContext||window.location.protocol==="https:"||window.location.hostname==="localhost");function a(e){return new Promise((t,n)=>{try{if(!c)return n("this feature is available only in secure contexts (HTTPS)");if(!(crypto!=null&&crypto.subtle.digest))return n("crypto.subtle.digest is not available");const r=new TextEncoder;crypto.subtle.digest("SHA-256",r.encode(e)).then(o=>{const s=Array.from(new Uint8Array(o)).map(i=>i.toString(16).padStart(2,"0")).join("");t(s)}).catch(n)}catch(r){n(r)}})}function d(){const e=[];return performance.getEntriesByType("resource").forEach(t=>{const n=t,r=n.initiatorType==="link"&&n.name.includes(".css"),o=n.initiatorType==="script"&&n.name.includes(".js");(r||o)&&typeof n.decodedBodySize=="number"&&e.push(n.decodedBodySize)}),e.sort(),e.join("-")}function l(e){let t=e;return t=t.replace(/<base.*?>/gm,""),t=t.replace(/var\s+APP_CONFIG\s*=\s*\{[^}]*\};*/gm,""),t=t.replace(/[\r\n]/gm,""),t.trim()}const h=l(document.documentElement.innerHTML);window.templateHash=null;try{document.addEventListener("DOMContentLoaded",()=>{a(JSON.stringify([h,d()])).then(e=>{var t;window.templateHash=e,(t=window.syncMetric)==null||t.call(window,{event:"template_hash_ready"})}).catch(e=>{console.error(`Error getting the template hash in promise: ${e.toString()}`)})})}catch(e){e&&typeof e=="object"&&console.error(`Error getting the template hash: ${e.toString()}`)}})();</script>
-    </body>
-
+    <script >"use strict";(()=>{const m=typeof window<"u"&&(window.isSecureContext||window.location.protocol==="https:"||window.location.hostname==="localhost");function w(t){return new Promise((e,r)=>{try{if(!m)return r("this feature is available only in secure contexts (HTTPS)");if(!(crypto!=null&&crypto.subtle.digest))return r("crypto.subtle.digest is not available");const n=new TextEncoder;crypto.subtle.digest("SHA-256",n.encode(t)).then(o=>{const s=Array.from(new Uint8Array(o)).map(a=>a.toString(16).padStart(2,"0")).join("");e(s)}).catch(r)}catch(n){r(n)}})}function u(t){let e=t;return e=e.replace(/<base.*?>/gm,""),e=e.replace(/var\s+APP_CONFIG\s*=\s*\{[^}]*\};*/gm,""),e=e.replace(/<script[^>]*src=["'].*?hid\.js.*?["'][^>]*><\/script>/gm,""),e=e.replace(/[\r\n]/gm,""),e=e.replace(/\s+/g,""),e.trim()}function l(t){const e=t instanceof Error?t.message:JSON.stringify(t);window.syncMetric&&window.syncMetric({event:"error",errorMessage:e,errorType:"CUSTOM",errorSubType:"TemplateHash"})}(async()=>{var t;try{window.templateHash=null;const e=(t=document.querySelector("html"))==null?void 0:t.dataset,n=`templateHash:${(e==null?void 0:e.landingName)||""}`,o=await cookieStore.get({name:n}),i=!!new URL(window.location.href).searchParams.get("debug");if(!o||o.expires<Date.now()){document.addEventListener("DOMContentLoaded",async()=>{const s=u(document.documentElement.innerHTML);i&&console.log("HTML used for templateHash after DOMContentLoaded",s),w(JSON.stringify([s])).then(async a=>{var c;window.templateHash=a,(c=window.syncMetric)==null||c.call(window,{event:"template_hash_ready"});const d=24*60*60*1e3;cookieStore.set({name:n,value:a,expires:Date.now()+d})}).catch(a=>{l(a)})});return}!window.templateHash&&o.value&&(window.templateHash=o.value,i&&console.log("templateHash after DOMContentLoaded was already sent:",window.templateHash))}catch(e){l(e)}})();})();</script>
+    <script >"use strict";(()=>{var F=(c=>(c.Error="Error",c.RangeError="RangeError",c.ReferenceError="ReferenceError",c.SecurityError="SecurityError",c.SyntaxError="SyntaxError",c.TypeError="TypeError",c.Unknown="Unknown",c))(F||{}),J=(n=>(n.rejectionhandled="rejectionhandled",n.unhandledrejection="unhandledrejection",n))(J||{}),me=()=>{let e=window.syncMetric;if(!e){console.log("Sync metric is not initialized");return}let t=()=>{var a;(((a=document.querySelector("html"))==null?void 0:a.getAttribute("data-env"))||"")==="production-archive"&&!Object.keys(APP_CONFIG).length&&e({event:"error",errorMessage:"Empty APP_CONFIG",errorSubType:"EmptyAppConfig",errorType:"CUSTOM"})},n=r=>{if(r.filename.includes("extension"))return;let a=`errorMessage: ${r.message}, lineNumber: ${r.lineno}, columnNumber: ${r.colno}, file: ${r.filename}`,u=r.error.name&&Object.values(F).includes(r.error.name)?r.error.name:"Unknown";e({event:"error",errorMessage:a,errorSubType:u,errorType:"JS"})},o=r=>{var f,l,g;if(typeof r.reason=="object"&&((l=(f=r.reason)==null?void 0:f.stack)!=null&&l.includes("extension")))return;let a=typeof r.reason=="object"&&((g=r.reason)!=null&&g.message)?r.reason.message:JSON.stringify(r.reason),u=r.type,c=Object.values(J).includes(u)?u:"Unknown";e({event:"unhandledRejection",errorMessage:a,errorSubType:c,errorType:"JS"})};window.addEventListener("error",n),window.addEventListener("unhandledrejection",o),t()};me();var j=()=>{var e,t;return typeof window>"u"?!0:(t=(e=window==null?void 0:window.location)==null?void 0:e.search)==null?void 0:t.includes("debug=1")},z=(e,t)=>{j()&&(t!==void 0?console.log(e,t):console.log(e))},L=e=>{j()&&console.group(e)},U=(e,t)=>{j()&&(t!==void 0?console.warn(e,t):console.warn(e))};var T=(r=>(r.MAIN="main",r.HTML="html",r.CSS="css",r.JS="js",r))(T||{});var A={ELEMENT:1,TEXT:3,COMMENT:8},X={key:"data-cs",value:"exclude"},H="data-template-hash-by-",b={main:`${H}main`,html:`${H}html`,css:`${H}css`,js:`${H}js`},w={main:"",html:"",css:"",js:""},P=/var\s+APP_CONFIG\s*=\s*\{[^}]*\};*/gm;var Y={css:{pattern:/\.css$/,htmlRegex:/<link[^>]+href="([^"]+\.css)"/g,initiator:"link"},js:{pattern:/\.js$/,htmlRegex:/<script[^>]+src="([^"]+\.js)"/g,initiator:"script"}};var W=e=>Object.values(Y).some(t=>e.initiatorType===t.initiator&&t.pattern.test(e.name));var D=e=>{var t;return((t=e.match(/\.([a-z0-9]+)(?:\?|$)/i))==null?void 0:t[1])||""},q=e=>{let t={};for(let n of e){let o=n.extension;t[o]||(t[o]=[]),t[o].push(n)}return t},V=e=>(e.startsWith(location.origin)&&(e=e.replace(location.origin,"")),pe(e)),pe=e=>{let t=e.indexOf("/assets/");if(t!==-1)return e.slice(t);if(e.startsWith("./assets/"))return e.slice(1);if(e.startsWith("assets/")||!e.startsWith("/"))return"/"+e;let n=e.lastIndexOf("/"),o=e.slice(n+1);return o?"/"+o:e};var K=async({html:e,resources:t,hashFunction:n})=>{let o=JSON.stringify({html:e,resources:t}),r=JSON.stringify({html:e}),a=q(t),u=Object.entries(a).map(([g,S])=>{let B=S.map(y=>({name:y.name,size:y.size})).sort((y,R)=>y.name.localeCompare(R.name));return[g,JSON.stringify(B)]}),[c,f,...l]=await Promise.all([n(o),n(r),...u.map(([,g])=>n(g))]);return{payload:o,resourcesPayload:a,resourcesHash:{...w,main:c,html:f,...Object.fromEntries(u.map(([g],S)=>[g,l[S]]))}}};var Q=e=>{let t=w;return Object.values(b).forEach(n=>{let o=e.getAttribute(n),r=n.replace(H,"");o!==null&&(t[r]=o)}),t};var Z=e=>e?e.nodeType===A.TEXT?"text":e.nodeType===A.COMMENT?"comment":e.nodeType===A.ELEMENT?"element":"element":"text";var _=e=>{let t={};if(!e)return t;if(typeof e.getAttributeNames=="function"){let n=e.getAttributeNames();for(let o of n){let r=e.getAttribute(o);t[o]=r!=null?r:""}return t}return t},ee=(e,t)=>_(e)[t];var te=e=>{var t,n;return e&&((n=(t=e.content)==null?void 0:t.childNodes)==null?void 0:n.length)>0?Array.from(e.content.childNodes):e&&e.childNodes?Array.from(e.childNodes):[]};var re=e=>e.tagName.toLowerCase();var ne=e=>e.textContent!==void 0&&e.textContent!==null?e.textContent:"";var de=e=>Object.values(b).includes(e),se=e=>{let t=Object.entries(e).filter(([n])=>!de(n)).map(([n,o])=>[n,o!=null?o:""]);return t.sort(([n],[o])=>n.localeCompare(o)),Object.fromEntries(t)};var v=(e,t=null)=>{if(t!=="runtime"&&t!=="build")return null;let n=Z(e);if(n==="comment")return null;if(n==="text"){let l=ne(e).replace(/\s+/g," ").trim();return l?{tag:"#text",attrs:{text:l}}:null}let o=re(e);if(!o||o==="base"||ee(e,X.key)||o==="script"&&e.textContent.match(P))return null;let r=se(_(e)),a=te(e),u=[];for(let f of a){let l=v(f,t);l&&u.push(l)}let c={tag:o};return Object.keys(r).length&&(c.attrs=r),u.length&&(c.children=u),c};var oe=e=>e.getEntriesByType("resource").filter(r=>!!W(r)).map(r=>({name:V(r.name),size:r.decodedBodySize||0,extension:D(r.name)})).sort((r,a)=>r.name.localeCompare(a.name));var x=document.documentElement.cloneNode(!0),ye=async e=>{let n=new TextEncoder().encode(e),o=await crypto.subtle.digest("SHA-256",n),r=new Uint8Array(o);return Array.from(r).map(a=>a.toString(16).padStart(2,"0")).join("")},he=async()=>{if(!x)return;let e=v(x,"runtime"),t=oe(performance);return await K({html:e,resources:t,hashFunction:ye})};document.addEventListener("DOMContentLoaded",async()=>{var e,t;try{let n=Q(x);if(!n.main)return;let r=await he();if(!r)return;let{payload:a,resourcesHash:u,resourcesPayload:c}=r,f={};L("[TemplateHash] Payload"),z(a),console.groupEnd(),L(`[TemplateHash] ${Object.keys(u).filter(s=>u[s]!=="").join(", ")}`),Object.entries(u).forEach(([s,i])=>{let m=s,d=n[m];if(!d)return;let I=d===i,C=I?"are identical":"was modified";f[m]={buildHash:d,clientHash:i,equal:I},U(`${s.toUpperCase()} ${C}.
+Build hash:   ${d}
+Runtime hash: ${i}`)}),console.groupEnd();let l=Object.values(T),g=Object.values(f).some(s=>s.equal===!1);window.templateHashes=Object.fromEntries(Object.entries(f).sort(([s],[i])=>{let m=l.indexOf(s),d=l.indexOf(i);return m!==-1&&d!==-1?m-d:m!==-1?-1:d!==-1?1:s.localeCompare(i)}));let S=s=>s.some(i=>i.startsWith("ad-")||i.includes("adblock")||i.includes("extension")||i.includes("overlay")||i.includes("popup")||i.includes("cookie")||i.includes("consent")||i.includes("banner")),B=s=>s.startsWith("ad_")||s.includes("adblock")||s.includes("extension")||s.includes("chrome")||s.includes("google")||s.includes("react")||s.includes("__"),y=4096,R=150,ie=5,N=[],p={};x.querySelectorAll("*").forEach(s=>{var G;if(s.getAttribute("data-cs")==="exclude")return;let i=s.tagName.toLowerCase();if(i==="base"||i==="script"&&s.textContent.match(P))return;p[i]||(p[i]={count:0,injected:0,hasInlineStyle:0,suspiciousId:0,suspiciousClass:0,inShadowDom:0,isTopLevelInjected:0,isIframe:0,textContent:""});let m=s.hasAttribute("style"),d=s.id?B(s.id):!1,I=S([...s.classList]),C=!!((G=s.getRootNode())!=null&&G.host),ce=x.querySelector("body"),O=s.parentElement===ce&&(i==="div"||i==="iframe"),$=s.tagName==="IFRAME",ue=m||d||I||C||O||$,h=p[i];if(h.count++,ue&&h.injected++,m&&h.hasInlineStyle++,d&&h.suspiciousId++,I&&h.suspiciousClass++,C&&h.inShadowDom++,O&&h.isTopLevelInjected++,$&&h.isIframe++,i==="style"&&N.length<ie){let k=(s.textContent||"").replace(/\s+/g,"").slice(0,R),le=k.replace(/</g,"\\u003C");k&&N.push(le)}}),p.style&&(p.style.textContent="");let ae=JSON.stringify(p).length,M=y-ae-100;if(M>0&&p.style&&N.length){let s="";for(let i of N){let m=(s?";":"")+i;if(m.length>M)break;s+=m,M-=m.length}p.style.textContent=s}JSON.stringify(p).length>y&&p.style&&(p.style.textContent="max_length");let E={...window.templateHashes,tagCounts:{},resources:{}};g&&(E.tagCounts=p,E.resources=c,JSON.stringify(E).length>y&&E.tagCounts.style&&(E.tagCounts.style.textContent="")),window.templateHashes=E,(e=window.syncMetric)==null||e.call(window,{event:"template_hashes_ready"})}catch(n){console.error("Error computing runtime template hash:",n),n instanceof Error&&((t=window.syncMetric)==null||t.call(window,{event:"error",errorMessage:n.message,errorType:"TemplateHashes"}))}});})();
+</script>
+</body>
 </html>

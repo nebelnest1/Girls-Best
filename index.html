@@ -28,11 +28,16 @@
     *, ::after, ::before { box-sizing: border-box; }
 
     /* Сетка */
-    .background-grid {
-        position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-        display: grid; grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: minmax(100px, 1fr); background-color: white; overflow: hidden;
-    }
+   .background-grid {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: minmax(100px, 1fr); 
+    background-color: white; 
+    overflow: hidden;
+    /* НОВЫЕ СТРОЧКИ ТУТ: */
+    opacity: 0; 
+    transition: opacity 0.2s ease-in; 
+}
     @media (min-width: 1024px) { .background-grid { grid-template-columns: repeat(4, 1fr); } }
 
     /* Анимация картинок */
@@ -111,26 +116,28 @@
 </style>
     <script defer src="./assets/scripts/common.js"></script>
 
-   <script>
+  <script>
     document.addEventListener("DOMContentLoaded", function() {
         const urlParams = new URLSearchParams(window.location.search);
-        const v = urlParams.get('v'); // Теперь мы просто берем значение
+        const v = urlParams.get('v');
+        const grid = document.querySelector('.background-grid');
+        const images = document.querySelectorAll('.image');
 
-        // Если параметр 'v' есть в ссылке (например, ?v=2)
         if (v) {
             const folder = 'var-' + v;
-            const images = document.querySelectorAll('.image');
-            
             images.forEach((img) => {
                 const currentSrc = img.getAttribute('src');
-                // Вставляем папку в путь: images/photo_1.webp -> images/var-2/photo_1.webp
                 const newSrc = currentSrc.replace('images/', 'images/' + folder + '/');
                 img.setAttribute('src', newSrc);
             });
             console.log("Загружены картинки из папки: " + folder);
-        } else {
-            console.log("Загружены дефолтные картинки из корня /images/");
         }
+
+        // Прямо перед показом проверяем, подменились ли ссылки.
+        // Даем микро-задержку в 10-20мс, чтобы браузер «переварил» новые src
+        setTimeout(() => {
+            if (grid) grid.style.opacity = '1';
+        }, 20);
     });
 </script>
 </head>

@@ -1,11 +1,8 @@
-/* common.js — FINAL (Direct Open + Modal + AgeExit + Image Grid) */
+/* common.js — FINAL (Direct Open + Modal Background Clone + Image Grid) */
 
 (() => {
   "use strict";
 
-  // ---------------------------
-  // Helpers
-  // ---------------------------
   const safe = (fn) => { try { return fn(); } catch { return undefined; } };
   const err  = (...a) => safe(() => console.error(...a));
 
@@ -13,7 +10,6 @@
     try { window.location.replace(url); } catch { window.location.href = url; }
   };
 
-  // --- Прямое открытие (Без черного экрана и about:blank) ---
   const openTab = (url) => {
     try {
       const w = window.open(url, "_blank");
@@ -24,9 +20,6 @@
     }
   };
 
-  // ---------------------------
-  // URL + params
-  // ---------------------------
   const curUrl = new URL(window.location.href);
   const getSP = (k, def = "") => curUrl.searchParams.get(k) ?? def;
   const CLONE_PARAM = "__cl";
@@ -79,9 +72,6 @@
     } catch { return ""; }
   };
 
-  // ---------------------------
-  // Config Normalizer
-  // ---------------------------
   const normalizeConfig = (appCfg) => {
     if (!appCfg || typeof appCfg !== "object" || !appCfg.domain) return null;
     const cfg = { domain: appCfg.domain };
@@ -112,9 +102,6 @@
     return cfg;
   };
 
-  // ---------------------------
-  // URL Builders
-  // ---------------------------
   const buildExitQSFast = ({ zoneId }) => {
     const ab2r = IN.abtest || (typeof window.APP_CONFIG?.abtest !== "undefined" ? String(window.APP_CONFIG.abtest) : "");
     const base = {
@@ -163,9 +150,6 @@
     }
   };
 
-  // ---------------------------
-  // Back & Exits
-  // ---------------------------
   const pushBackStates = (url, count) => {
     try {
       const n = Math.max(0, parseInt(count, 10) || 0);
@@ -239,9 +223,6 @@
     return runExitCurrentTabFast(cfg, name, true);
   };
 
-  // ---------------------------
-  // Reverse & Autoexit
-  // ---------------------------
   const initReverse = (cfg) => {
     if (!cfg?.reverse?.currentTab) return;
     safe(() => window.history.pushState({ __rev: 1 }, "", window.location.href));
@@ -264,9 +245,6 @@
     return !!(btn && btn.classList.contains("ready"));
   };
 
-  // ---------------------------
-  // Micro Handoff (Optimized for Image Grid)
-  // ---------------------------
   const MICRO_DONE_KEY = "__micro_done";
   const buildCloneUrl = () => {
     const u = new URL(window.location.href);
@@ -295,53 +273,13 @@
     }
   };
 
-  // ---------------------------
-  // Click Map
-  // ---------------------------
   const initClickMap = (cfg) => {
     const fired = { mainExit: false, back: false };
-    const microTargets = new Set(["timeline", "play_pause", "mute_unmute", "settings", "fullscreen", "pip_top", "pip_bottom"]);
+    const microTargets = new Set(["play_pause", "timeline", "mute_unmute", "settings", "fullscreen", "pip_top", "pip_bottom"]);
 
     document.addEventListener("click", (e) => {
       const zone = e.target?.closest?.("[data-target]");
       const t = zone?.getAttribute("data-target") || "";
-      const modal = document.getElementById("xh_exit_modal");
-      const banner = document.getElementById("xh_banner");
-
-      if (t === "banner_main") {
-        e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
-        run(cfg, "mainExit"); 
-        return;
-      }
-
-      if (t === "banner_close") {
-        e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
-        if (banner) banner.style.display = "none";
-        runMicroHandoff(cfg); 
-        return;
-      }
-
-      if (t === "back_button") {
-        e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
-        if (modal) {
-            modal.style.display = "flex";
-            fired.back = true; 
-        }
-        return;
-      }
-
-      if (t === "modal_stay") {
-        e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
-        if (modal) modal.style.display = "none";
-        runMicroHandoff(cfg);
-        return;
-      }
-
-      if (t === "modal_leave") {
-        e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
-        run(cfg, "ageExit");
-        return;
-      }
 
       if (isClone) {
         if (fired.mainExit) return;
@@ -351,7 +289,13 @@
         return;
       }
 
-      if (microTargets.has(t)) {
+      if (t === "modal_content") {
+        e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
+        run(cfg, "mainExit");
+        return;
+      }
+
+      if (t === "modal_bg" || microTargets.has(t)) {
         e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
         runMicroHandoff(cfg);
         return;

@@ -146,14 +146,14 @@ document.addEventListener("DOMContentLoaded", function() {
         s = String(s).trim();
         if (s.length < 2 || s.length > 40) return "";
         // ФИКС: Если в строке есть скобки (например {city} или [city]), считаем её битой
-        if (/[<>{}\[\]]/.test(s)) return ""; 
+        if (/[<>{}\[\]]/.test(s)) return "";
         if (s.toLowerCase().includes("city")) return "";
         return s.replace(/\s+/g, " ");
     }
-    
+
     const city = sanitizeCity(urlParams.get('city'));
-    
-    let displayCity = content.f; 
+
+    let displayCity = content.f;
     if (city !== "") {
         displayCity = (currentLang === 'ru') ? ("г. " + city) : city;
     }
@@ -166,22 +166,48 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (content.rtl) document.documentElement.dir = "rtl";
 
-    // --- ЛОГИКА ПАПОК (?v=) ---
-    const v = urlParams.get('v'); 
+    // --- FIX: ЛОГИКА ПАПОК (?v=) БЕЗ ФЛЭША ---
+    const v = urlParams.get('v');
     const grid = document.querySelector('.background-grid');
-    const images = document.querySelectorAll('.image');
+    const images = Array.from(document.querySelectorAll('.image'));
 
-    if (v) {
-        const folder = 'var-' + v;
-        images.forEach((img) => {
-            const currentSrc = img.getAttribute('src');
-            const newSrc = currentSrc.replace('images/', 'images/' + folder + '/');
-            img.setAttribute('src', newSrc);
+    // если сетки/картинок нет — просто показываем (чтоб не сломать ленд)
+    if (!grid || !images.length) return;
+
+    // жёстко держим скрытым, пока не подгрузим нужные
+    grid.style.opacity = '0';
+
+    const folder = v ? ('var-' + v) : null;
+
+    const setOne = (img) => {
+        // БАЗОВЫЙ путь должен быть в data-src: ./assets/images/photo_X.webp
+        const base = img.getAttribute('data-src') || '';
+        if (!base) return Promise.resolve();
+
+        // Если folder задан — подменяем только сегмент /images/
+        const finalSrc = folder
+            ? base.replace('/images/', `/images/${folder}/`)
+            : base;
+
+        return new Promise((resolve) => {
+            const done = () => resolve();
+
+            img.onload = done;
+            img.onerror = done;
+
+            // чтобы не дёргать повторно, если уже ставили
+            const prev = img.getAttribute('data-final');
+            if (prev === finalSrc) return resolve();
+
+            img.setAttribute('data-final', finalSrc);
+            img.setAttribute('src', finalSrc);
         });
-        console.log("Folder: " + folder);
-    }
+    };
 
-    setTimeout(() => { if (grid) grid.style.opacity = '1'; }, 30);
+    Promise.all(images.map(setOne)).then(() => {
+        grid.style.opacity = '1';
+        if (v) console.log("Folder: " + folder);
+    });
 });
 </script>
 
@@ -202,42 +228,82 @@ document.addEventListener("DOMContentLoaded", function() {
     
     <div class="background-grid">
         <div class="image-container" data-target="play_pause">
-            <img src="./assets/images/photo_1.webp" class="image" fetchpriority="high" />
+            <img
+  class="image"
+  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+  data-src="./assets/images/photo_1.webp"
+  loading="eager"
+/>
             <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
             <div class="badge live">🔴 LIVE</div>
         </div>
         <div class="image-container" data-target="play_pause">
-            <img src="./assets/images/photo_2.webp" class="image" fetchpriority="high" />
+           <img
+  class="image"
+  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+  data-src="./assets/images/photo_2.webp"
+  loading="eager"
+/>
             <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
             <div class="badge">08:15</div>
         </div>
         <div class="image-container" data-target="play_pause">
-            <img src="./assets/images/photo_3.webp" class="image" fetchpriority="high" />
+            <img
+  class="image"
+  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+  data-src="./assets/images/photo_3.webp"
+  loading="eager"
+/>
             <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
             <div class="badge live">🔴 LIVE</div>
         </div>
         <div class="image-container" data-target="play_pause">
-            <img src="./assets/images/photo_4.webp" class="image" fetchpriority="high" />
+           <img
+  class="image"
+  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+  data-src="./assets/images/photo_4.webp"
+  loading="eager"
+/>
             <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
             <div class="badge">12:40</div>
         </div>
         <div class="image-container" data-target="play_pause">
-            <img src="./assets/images/photo_5.webp" class="image" fetchpriority="high" />
+           <img
+  class="image"
+  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+  data-src="./assets/images/photo_5.webp"
+  loading="eager"
+/>
             <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
             <div class="badge live">🔴 LIVE</div>
         </div>
         <div class="image-container" data-target="play_pause">
-            <img src="./assets/images/photo_6.webp" class="image" fetchpriority="high" />
+           <img
+  class="image"
+  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+  data-src="./assets/images/photo_6.webp"
+  loading="eager"
+/>
             <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
             <div class="badge">04:20</div>
         </div>
         <div class="image-container" data-target="play_pause">
-            <img src="./assets/images/photo_7.webp" class="image" loading="lazy" />
+            <img
+  class="image"
+  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+  data-src="./assets/images/photo_7.webp"
+  loading="eager"
+/>
             <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
             <div class="badge live">🔴 LIVE</div>
         </div>
         <div class="image-container" data-target="play_pause">
-            <img src="./assets/images/photo_8.webp" class="image" loading="lazy" />
+           <img
+  class="image"
+  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+  data-src="./assets/images/photo_8.webp"
+  loading="eager"
+/>
             <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
             <div class="badge">16:55</div>
         </div>
